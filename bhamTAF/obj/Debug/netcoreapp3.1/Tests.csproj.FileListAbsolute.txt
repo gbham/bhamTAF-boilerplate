@@ -1,0 +1,3 @@
+C:\Dev\bhamTAF\bhamTAF\obj\Debug\netcoreapp3.1\Tests.csprojAssemblyReference.cache
+C:\Dev\bhamTAF\bhamTAF\obj\Debug\netcoreapp3.1\Tests.AssemblyInfoInputs.cache
+C:\Dev\bhamTAF\bhamTAF\obj\Debug\netcoreapp3.1\Tests.AssemblyInfo.cs
