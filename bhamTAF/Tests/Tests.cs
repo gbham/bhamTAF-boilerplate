@@ -10,7 +10,7 @@ namespace bhamTAF
         [Test]
         public void Test1()
         {
-            var HomePage = new HomePage(driver);
+            var HomePage = new HomePage(Driver);
             HomePage.LoadSite();
 
             HomePage.GoToLoginPage();
@@ -21,9 +21,39 @@ namespace bhamTAF
         }
 
         [Test]
+        public void ValidateAccountCreation()
+        {
+            var HomePage = new HomePage(Driver);
+            HomePage.LoadSite();
+
+            var LoginPage = HomePage.GoToLoginPage();
+
+            var RegisterPage = LoginPage.TypeEmailAddress()
+                                        .ClickCreateAccount();
+
+            var AccountPage = RegisterPage.ClickRadioBtnForMr()
+                                          .EnterFirstname(firstname)
+                                          .EnterSurname(surname)
+                                          .EnterPassword(password)
+                                          .EnterRandomDOB()
+                                          .ClickSignUpForNewsletterCheckbox()
+                                          .EnterAddress(address)
+                                          .EnterCity(city)
+                                          .EnterState(state)
+                                          .EnterPostcode(postcode)
+                                          .EnterMobile(mobile)
+                                          .ClickRegister();
+
+
+            var AccountPageTitle = AccountPage.GetAccountPageTitle();
+            Assert.AreEqual(ExpectedAccountPageTitle, AccountPageTitle);
+
+        }
+
+        [Test]
         public void ValidateAccountCreationError_ScenarioOne()
         {
-            var HomePage = new HomePage(driver);
+            var HomePage = new HomePage(Driver);
             HomePage.LoadSite();
 
             var LoginPage = HomePage.GoToLoginPage();
@@ -32,21 +62,18 @@ namespace bhamTAF
                                         .ClickCreateAccount();
 
             RegisterPage.ClickRadioBtnForMr()
-                        .TypeFirstName(firstname)
-                        .TypeSurnameName(surname)
-                        //TODO
+                        .EnterFirstname(firstname)
+                        .EnterSurname(surname)
                         .EnterRandomDOB()
                         .ClickRegister();
 
-            var expectedErrors = "You must register at least one phone number. passwd is required. address1 is required. " +
+            var ExpectedErrors = "You must register at least one phone number. passwd is required. address1 is required. " +
                                  "city is required. The Zip/Postal code you've entered is invalid. It must follow this format" +
                                  ":  This country requires you to choose a State.";
 
-            var actualErrors = RegisterPage.GetActualErrors();        
+            var ActualErrors = RegisterPage.GetActualErrors();
 
-            Assert.AreEqual(expectedErrors, actualErrors);
-
-            Thread.Sleep(2500);
+            Assert.AreEqual(ExpectedErrors, ActualErrors);
 
         }
     }

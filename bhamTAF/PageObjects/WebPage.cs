@@ -7,15 +7,15 @@ namespace PageObjects
 {
     public class WebPage
     {
-        public IWebDriver driver;
-        public WebDriverWait wait;       
+        protected IWebDriver Driver { get; private set; }
+        protected WebDriverWait Wait { get; private set; }
 
-        public WebPage( )
-        {            
-        }
-        public WebPage(IWebDriver Driver)
+        public WebPage(IWebDriver driver)
         {
-            driver = Driver;           
+            Driver = driver;            
+        }
+        public WebPage()
+        {
         }
 
         public void WaitUntilElementisDisplayedAndEnabled(By selector)
@@ -25,7 +25,7 @@ namespace PageObjects
                 try
                 {
                     var element = GetWebElement(selector);
-                    return driver.FindElement(selector).Displayed && driver.FindElement(selector).Enabled;                    
+                    return Driver.FindElement(selector).Displayed && Driver.FindElement(selector).Enabled;                    
                 }
                 catch (NoSuchElementException e)
                 {
@@ -41,15 +41,38 @@ namespace PageObjects
             });            
         }
 
-        public IWebElement GetWebElement(By selector)
-        {            
-            IWebElement element = null;
-            
+        public void WaitUntilElementisDisplayed(By selector)
+        {
             GetWaitForFiveSeconds().Until(d =>
             {
                 try
                 {
-                    element = driver.FindElement(selector);
+                    var element = GetWebElement(selector);
+                    return Driver.FindElement(selector).Displayed;
+                }
+                catch (NoSuchElementException e)
+                {
+                    Console.WriteLine($"CATCH ERROR: {e.Message}");
+                    return false;
+                }
+                //catch ()
+                //{
+                //}  
+                //catch ()
+                //{
+                //}    
+            });
+        }
+
+        public IWebElement GetWebElement(By selector)
+        {            
+            IWebElement element = null;
+
+            GetWaitForFiveSeconds().Until(d =>
+            {
+                try
+                {
+                    element = Driver.FindElement(selector);
                     return true;
                 }
                 catch (NoSuchElementException e)
@@ -68,8 +91,16 @@ namespace PageObjects
             return element;
         }
 
+        public SelectElement GetSelectWebElement(By selector)
+        {
+            var element = GetWebElement(selector);
+            var selectElement = new SelectElement(element);            
+
+            return selectElement;
+        }
+
         public void EnterText(IWebElement element, string firstname)
-        {  
+        {
             GetWaitForFiveSeconds().Until(d =>
             {
                 try
@@ -114,10 +145,12 @@ namespace PageObjects
             });
         }
 
+
+
         public WebDriverWait GetWaitForFiveSeconds()
         {
-            wait = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
-            return wait;
+            Wait = new WebDriverWait(Driver, new TimeSpan(0, 0, 5));
+            return Wait;
         }
 
     }

@@ -10,9 +10,8 @@ namespace PageObjects
 
         private string RANDOM_EMAIL_ADDRESS = $"{Guid.NewGuid()}@test.com";
 
-        public LoginPage(IWebDriver Driver)
-        {
-            driver = Driver;
+        public LoginPage(IWebDriver Driver) : base(Driver)
+        {            
         }
 
         public LoginPage TypeEmailAddress()
@@ -28,7 +27,7 @@ namespace PageObjects
             var element = GetWebElement(By.Id(SELECTOR_ID_CREATE_ACCOUNT_BTN));
             ClickElement(element);            
 
-            return new RegisterPage(driver);
+            return new RegisterPage(Driver);
         }
     }
 }

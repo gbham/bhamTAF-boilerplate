@@ -6,18 +6,18 @@ namespace bhamTAF
 {
     public class BaseTest
     {        
-        public IWebDriver driver;        
+        public IWebDriver Driver;        
 
         [SetUp]
         public void Setup()
-        {            
-            driver = new ChromeDriver();   
+        {
+            Driver = new ChromeDriver();   
         }
 
         [TearDown]
         public void Teardown()
         {
-            driver.Quit();
+            Driver.Quit();
         }
     }
 }

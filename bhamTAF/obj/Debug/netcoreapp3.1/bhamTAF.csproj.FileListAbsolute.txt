@@ -92,3 +92,5 @@ C:\Dev\bhamTAF\bhamTAF\obj\Debug\netcoreapp3.1\bhamTAF.AssemblyInfo.cs
 C:\Dev\bhamTAF\bhamTAF\obj\Debug\netcoreapp3.1\bhamTAF.csproj.CopyComplete
 C:\Dev\bhamTAF\bhamTAF\obj\Debug\netcoreapp3.1\bhamTAF.dll
 C:\Dev\bhamTAF\bhamTAF\obj\Debug\netcoreapp3.1\bhamTAF.pdb
+C:\Dev\bhamTAF\bhamTAF\obj\Debug\netcoreapp3.1\bhamTAF.csprojAssemblyReference.cache
+C:\Dev\bhamTAF\bhamTAF\bin\Debug\netcoreapp3.1\WebDriver.Support.dll

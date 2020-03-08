@@ -13,15 +13,13 @@ namespace PageObjects
 
         const string HOME_URL = "http://www.automationpractice.com";
 
-        public HomePage(IWebDriver Driver)
-        {
-            driver = Driver;
-            wait = new WebDriverWait(driver, new TimeSpan(0, 0, 15));
+        public HomePage(IWebDriver Driver): base(Driver)
+        {           
         }        
 
         public void LoadSite()
         {
-            driver.Navigate().GoToUrl(HOME_URL);
+            Driver.Navigate().GoToUrl(HOME_URL);
 
             WaitUntilElementisDisplayedAndEnabled(By.Id(SELECTOR_ID_HOMEPAGE_LOGO));
         }        
@@ -33,7 +31,7 @@ namespace PageObjects
 
             WaitUntilElementisDisplayedAndEnabled(By.Id(SELECTOR_ID_HOMEPAGE_LOGO));
 
-            return new HomePage(driver);
+            return new HomePage(Driver);
         }
 
         public LoginPage GoToLoginPage()
@@ -43,7 +41,7 @@ namespace PageObjects
 
             WaitUntilElementisDisplayedAndEnabled(By.Id(SELECTOR_ID_EMAIL_ADDRESS_FIELD_SIGN_IN));
 
-            return new LoginPage(driver);
+            return new LoginPage(Driver);
         }
     }
 }
