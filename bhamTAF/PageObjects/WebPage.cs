@@ -10,12 +10,36 @@ namespace PageObjects
         protected IWebDriver Driver { get; private set; }
         protected WebDriverWait Wait { get; private set; }
 
+        protected const string SELECTOR_CLASS_LOGIN_BTN = "login";
+        protected const string SELECTOR_ID_EMAIL_ADDRESS_FIELD_SIGN_IN = "email";
+        protected const string SELECTOR_ID_HOMEPAGE_LOGO = "header_logo";
+
         public WebPage(IWebDriver driver)
         {
             Driver = driver;            
         }
         public WebPage()
         {
+        }
+
+        public HomePage GoToHomePage()
+        {
+            var homePageLogo = GetWebElement(By.Id(SELECTOR_ID_HOMEPAGE_LOGO));
+            ClickElement(homePageLogo);
+
+            WaitUntilElementisDisplayedAndEnabled(By.Id(SELECTOR_ID_HOMEPAGE_LOGO));
+
+            return new HomePage(Driver);
+        }
+
+        public LoginPage GoToLoginPage()
+        {
+            var LoginPageBtn = GetWebElement(By.ClassName(SELECTOR_CLASS_LOGIN_BTN));
+            ClickElement(LoginPageBtn);
+
+            WaitUntilElementisDisplayedAndEnabled(By.Id(SELECTOR_ID_EMAIL_ADDRESS_FIELD_SIGN_IN));
+
+            return new LoginPage(Driver);
         }
 
         public void WaitUntilElementisDisplayedAndEnabled(By selector)
@@ -145,13 +169,10 @@ namespace PageObjects
             });
         }
 
-
-
         public WebDriverWait GetWaitForFiveSeconds()
         {
             Wait = new WebDriverWait(Driver, new TimeSpan(0, 0, 5));
             return Wait;
         }
-
     }
 }
