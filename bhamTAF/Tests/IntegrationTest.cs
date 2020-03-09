@@ -9,8 +9,6 @@ namespace bhamTAF
         public const string city = "Dundee";
         public const string state = "New York";
         public const string postcode = "00000";
-        public const string mobile = "07864536745";
-
-        public const string ExpectedAccountPageTitle = "My account - My Store";
+        public const string mobile = "07864536745";        
     }
 }
