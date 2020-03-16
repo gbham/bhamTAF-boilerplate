@@ -9,8 +9,7 @@
     
      steps:
        - checkout
-       - run: dotnet build
-       
+       - run: dotnet build       
    jobTwo:
      executor: win/default     
     
