@@ -1,14 +1,14 @@
 jobs: 
   build: 
     docker:
-      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
+      - image: mcr.microsoft.com/dotnet/core/sdk:3.1
     steps: 
        - checkout
        - run: dotnet build     
        
   test: 
     docker:
-      - image: mcr.microsoft.com/dotnet/core/sdk:2.2     
+      - image: mcr.microsoft.com/dotnet/core/sdk:3.1    
     steps: 
       - checkout
       - run: echo "test"
