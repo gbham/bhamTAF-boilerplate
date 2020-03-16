@@ -1,13 +1,14 @@
 jobs: 
   build: 
-    executor: win/default
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
     steps: 
        - checkout
        - run: dotnet build     
        
   test: 
-    executor: win/default 
-     
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:2.2     
     steps: 
       - checkout
       - run: echo "test"
