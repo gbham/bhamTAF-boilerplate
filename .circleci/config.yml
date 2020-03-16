@@ -22,7 +22,7 @@ jobs:
       - run: |
         if [[ $(cat my_workspace/echo-output) == "Trying out workspaces" ]]; then
           echo "It Worked";
-        else:
+        :else
           echo "NO!"; exit 1
         fi            
        
