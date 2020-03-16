@@ -1,17 +1,16 @@
- jobs: 
-   build: 
-     executor: win/default
-     
-     steps: 
+jobs: 
+  build: 
+    executor: win/default
+    steps: 
        - checkout
        - run: dotnet build     
        
-   test: 
-     executor: win/default 
+  test: 
+    executor: win/default 
      
-     steps: 
-       - checkout
-       - run: echo "test"
+    steps: 
+      - checkout
+      - run: echo "test"
        
 workflows: 
   version: 2.1
