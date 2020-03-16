@@ -4,9 +4,17 @@
   win: circleci/windows@2.2.0
 
  jobs:
-   build:
+   jobOne:
      executor: win/default     
     
      steps:
        - checkout
        - run: dotnet build
+       
+   jobTwo:
+     executor: win/default     
+    
+     steps:
+       - checkout
+       - run: echo "test"
+ 
