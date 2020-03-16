@@ -8,9 +8,9 @@ jobs:
       - run: echo "Trying out workspaces" > my_workspace/echo-output
       - run: dotnet build     
       - persist_to_workspace:
-        root: my_workspace
-        paths:
-          - echo-output
+          root: my_workspace
+          paths:
+            - echo-output
        
   test: 
     docker:
