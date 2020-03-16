@@ -1,17 +1,12 @@
- version: 2.1
- 
- orbs:
-  win: circleci/windows@2.2.0
-
  jobs:
-   jobOne:
+   build:
      executor: win/default
      
      steps:
        - checkout
        - run: dotnet build     
        
-   jobTwo:
+   test:
      executor: win/default 
      
      steps:
@@ -20,7 +15,7 @@
        
 workflows:
   version: 2.1
-  jobs_One_And_Two:
+  build_and_test:
     jobs:
-      - jobOne
-      - jobTwo
+      - build
+      - test
