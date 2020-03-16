@@ -1,5 +1,5 @@
  version: 2.1
-
+ 
  orbs:
   win: circleci/windows@2.2.0
 
@@ -20,9 +20,7 @@
        
 workflows:
   version: 2.1
-  Jobs_One_And_Two:
+  jobs_One_And_Two:
     jobs:
       - jobOne
       - jobTwo
-  
- 
