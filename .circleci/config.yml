@@ -6,12 +6,23 @@
  jobs:
    jobOne:
      executor: win/default
+     
      steps:
        - checkout
-       - run: dotnet build       
+       - run: dotnet build     
+       
    jobTwo:
      executor: win/default 
+     
      steps:
        - checkout
        - run: echo "test"
+       
+workflows:
+  version: 2.1
+  Jobs_One_And_Two:
+    jobs:
+      - jobOne
+      - jobTwo
+  
  
