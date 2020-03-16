@@ -5,14 +5,12 @@
 
  jobs:
    jobOne:
-     executor: win/default     
-    
+     executor: win/default
      steps:
        - checkout
        - run: dotnet build       
    jobTwo:
-     executor: win/default     
-    
+     executor: win/default 
      steps:
        - checkout
        - run: echo "test"
