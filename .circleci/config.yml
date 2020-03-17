@@ -53,7 +53,9 @@ jobs:
       #- run: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\vsdevcmd\core\vsdevcmd_start.bat
       #- run: Vstest.console.exe bhamTAF.dll 
        
-  test:    
+  test:
+    executor:
+      name: win/default
     steps: 
       - run: ls
       #- run: cd /root/project/bhamTAF/bin/Debug/netcoreapp3.1
