@@ -20,11 +20,11 @@ namespace PageObjects
         private const string SELECTOR_ID_STATE= "id_state";
         private const string SELECTOR_ID_POSTCODE = "postcode"; 
         private const string SELECTOR_ID_MOBILE = "phone_mobile";
-        private const string SELECTOR_ID_REGISTER_BTN = "submitAccount";        
+        private const string SELECTOR_ID_REGISTER_BTN = "submitAccount";
 
         public RegisterPage(IWebDriver Driver) : base(Driver)
         {
-        }        
+        }
 
         public RegisterPage ClickRadioBtnForMr()
         {

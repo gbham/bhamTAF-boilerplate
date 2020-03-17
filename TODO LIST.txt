@@ -1,1 +1,20 @@
--Add in other Exceptions
+-Ensure using exception error message in output (i.e $"Catch Error: {e.Message})
+-Add more execptions to catch blocks
+-Use abstract classes where appropiate
+-Add enviromental variables
+-Create a "GetWebElements()"
+-ensure access modifiers are appropriate
+
+Other potential scenarios:
+-Add item to cart (select quantity, sixe, color)
+-Buy an item (entire process) then verify in order history
+-Leave review
+-Maps on our stores page
+-using sorting/filtering functions
+-Search function
+-Shopping cart
+-Wishlists (verify item was added to it)
+-Add new address
+-the compare items function
+-Error response when terms of service box not click
+-Verify product counts in shopping cart

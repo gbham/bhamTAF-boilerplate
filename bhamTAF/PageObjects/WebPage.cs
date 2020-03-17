@@ -1,18 +1,15 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
-
+using System.Threading;
 
 namespace PageObjects
 {
     public class WebPage
     {
         protected IWebDriver Driver { get; private set; }
-        protected WebDriverWait Wait { get; private set; }
-
-        protected const string SELECTOR_CLASS_LOGIN_BTN = "login";
-        protected const string SELECTOR_ID_EMAIL_ADDRESS_FIELD_SIGN_IN = "email";
-        protected const string SELECTOR_ID_HOMEPAGE_LOGO = "header_logo";
+        protected WebDriverWait Wait { get; private set; }               
 
         public WebPage(IWebDriver driver)
         {
@@ -20,26 +17,6 @@ namespace PageObjects
         }
         public WebPage()
         {
-        }
-
-        public HomePage GoToHomePage()
-        {
-            var homePageLogo = GetWebElement(By.Id(SELECTOR_ID_HOMEPAGE_LOGO));
-            ClickElement(homePageLogo);
-
-            WaitUntilElementisDisplayedAndEnabled(By.Id(SELECTOR_ID_HOMEPAGE_LOGO));
-
-            return new HomePage(Driver);
-        }
-
-        public LoginPage GoToLoginPage()
-        {
-            var LoginPageBtn = GetWebElement(By.ClassName(SELECTOR_CLASS_LOGIN_BTN));
-            ClickElement(LoginPageBtn);
-
-            WaitUntilElementisDisplayedAndEnabled(By.Id(SELECTOR_ID_EMAIL_ADDRESS_FIELD_SIGN_IN));
-
-            return new LoginPage(Driver);
         }
 
         public void WaitUntilElementisDisplayedAndEnabled(By selector)
@@ -56,9 +33,11 @@ namespace PageObjects
                     Console.WriteLine($"CATCH ERROR: {e.Message}");
                     return false;
                 }
-                //catch ()
-                //{
-                //}  
+                catch (ElementNotInteractableException e)
+                {
+                    Console.WriteLine($"CATCH ERROR: {e.Message}");
+                    return false;
+                }
                 //catch ()
                 //{
                 //}    
@@ -79,9 +58,11 @@ namespace PageObjects
                     Console.WriteLine($"CATCH ERROR: {e.Message}");
                     return false;
                 }
-                //catch ()
-                //{
-                //}  
+                catch (ElementNotInteractableException e)
+                {
+                    Console.WriteLine($"CATCH ERROR: {e.Message}");
+                    return false;
+                }
                 //catch ()
                 //{
                 //}    
@@ -104,9 +85,11 @@ namespace PageObjects
                     Console.WriteLine($"CATCH ERROR: {e.Message}");
                     return false;
                 }
-                //catch ()
-                //{
-                //}
+                catch (ElementNotInteractableException e)
+                {
+                    Console.WriteLine($"CATCH ERROR: {e.Message}");
+                    return false;
+                }
                 //catch ()
                 //{
                 //}    
@@ -137,9 +120,11 @@ namespace PageObjects
                     Console.WriteLine($"CATCH ERROR: {e.Message}");
                     return false;
                 }
-                //catch ()
-                //{
-                //}
+                catch (ElementNotInteractableException e)
+                {
+                    Console.WriteLine($"CATCH ERROR: {e.Message}");
+                    return false;
+                }
                 //catch ()
                 //{
                 //}    
@@ -160,13 +145,22 @@ namespace PageObjects
                     Console.WriteLine($"CATCH ERROR: {e.Message}");
                     return false;
                 }
-                //catch ()
-                //{
-                //}
+                catch (ElementNotInteractableException e)
+                {
+                    Console.WriteLine($"CATCH ERROR: {e.Message}");
+                    return false;
+                }
                 //catch ()
                 //{
                 //}    
             });
+        }
+
+        protected void ScrollPageToElement(IWebElement element)
+        {
+            var actions = new Actions(Driver);
+            actions.MoveToElement(element);
+            actions.Perform();
         }
 
         public WebDriverWait GetWaitForFiveSeconds()
