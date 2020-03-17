@@ -14,7 +14,7 @@ jobs:
       - run:
           name: Open Visual Studio Dev Cmd
           command: |              
-            C:\ProgramData\Microsoft\Windows\"Start Menu"\Programs\"Visual Studio 2019"\"Visual Studio Tools"\"Developer Command Prompt for VS 2019"
+            C:\ProgramData\Microsoft\Windows\"Start Menu"\Programs\"Visual Studio 2019"\"Visual Studio Tools"\"Developer Command Prompt for VS 2019.lnk"
             ping 127.0.0.1 -n 15
             ls
             VSTest.Console/?
