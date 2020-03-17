@@ -1,0 +1,73 @@
+#Remember and use cache, env variables and persist_to_workspace/attach_workspace
+version: 2.1
+orbs:
+  win: circleci/windows@2.2.0
+  
+jobs: 
+  build: 
+    executor:
+      name: win/default
+    steps: 
+      - checkout    
+      - run: dotnet build
+      
+      - run:
+          name: Open Visual Studio Dev Cmd
+          command: |
+            C:/"Program Files (x86)"/"Microsoft Visual Studio"/2019/Community/Common7/Tools/VsDevCmd.bat
+            ping 127.0.0.1 -n 15
+            ls
+            VSTest.Console/?
+      
+      
+      
+      #Vstest.console.exe C:/Users/circleci/project/bhamTAF/bin/Debug/netcoreapp3.1/bhamTAF.dll
+      
+      #- run:
+      #    requires:
+      #      - Open Visual Studio Dev Cmd
+      #    command:
+      #      VSTest.Console 
+            #Vstest.console.exe C:/Users/circleci/project/bhamTAF/bin/Debug/netcoreapp3.1/bhamTAF.dll
+      
+      
+      #- run:
+      #    shell: "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\Tools\\VsDevCmd.bat"
+      #    command: |
+      #      Vstest.console.exe C:/Users/circleci/project/bhamTAF/bin/Debug/netcoreapp3.1/bhamTAF.dll
+            
+      
+      
+      
+      
+      
+      
+      
+     
+      
+         
+         
+      #VSTest.Console/?    
+      #cd C:/Users/circleci/project/bhamTAF/bin/Debug/netcoreapp3.1               
+      #Vstest.console.exe bhamTAF.dll
+      
+      #- run: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\vsdevcmd\core\vsdevcmd_start.bat
+      #- run: Vstest.console.exe bhamTAF.dll 
+       
+  test:
+    executor:
+      name: win/default
+    steps: 
+      - run: ls
+      #- run: cd /root/project/bhamTAF/bin/Debug/netcoreapp3.1
+      #- run: cd C:\\Dev\\bhamTAF\\bhamTAF\\bin\\Debug\\netcoreapp3.1
+      #- run: Vstest.console.exe bhamTAF.dll      
+       
+workflows: 
+  version: 2
+  build_and_test: 
+    jobs: 
+      - build
+      - test:        
+          requires:
+            - build
