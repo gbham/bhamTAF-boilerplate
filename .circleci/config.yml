@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run: mkdir -p my_workspace      
       - run: dotnet build
-      - run: cd C:\\Dev\\bhamTAF\\bhamTAF\\bin\\Debug
+      - run: cd C:\\Dev\\bhamTAF\\bhamTAF\\
        
   test: 
     docker:
