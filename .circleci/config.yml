@@ -15,7 +15,7 @@ jobs:
           name: Open Visual Studio Dev Cmd
           command: |              
             C:/"Program Files (x86)"/"Microsoft Visual Studio"/2019/Community/Common7/Tools/VsDevCmd.bat
-            ping 127.0.0.1 -n 6 > nul
+            ping 127.0.0.1 -n 6
             VSTest.Console
       #VSTest.Console/? 
             
