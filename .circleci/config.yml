@@ -1,4 +1,4 @@
-#Remember and use cache, env variables and persist_to_workspace/attach_workspace
+#Remember and use cache, env variables and persist_to_workspace/attach_workspace.
 jobs: 
   build: 
     docker:
