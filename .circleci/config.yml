@@ -17,6 +17,7 @@ jobs:
             C:/"Program Files (x86)"/"Microsoft Visual Studio"/2019/Community/Common7/Tools/VsDevCmd.bat
             ping 127.0.0.1 -n 15
             ls
+            VSTest.Console
       #VSTest.Console/? 
             
       #Vstest.console.exe C:/Users/circleci/project/bhamTAF/bin/Debug/netcoreapp3.1/bhamTAF.dll
@@ -52,9 +53,7 @@ jobs:
       #- run: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\vsdevcmd\core\vsdevcmd_start.bat
       #- run: Vstest.console.exe bhamTAF.dll 
        
-  test: 
-    docker:
-      - image: mcr.microsoft.com/dotnet/core/sdk:3.1    
+  test:    
     steps: 
       - run: ls
       #- run: cd /root/project/bhamTAF/bin/Debug/netcoreapp3.1
