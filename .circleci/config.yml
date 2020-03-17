@@ -6,7 +6,7 @@ orbs:
 jobs: 
   build: 
     executor:
-      - name: win/default
+      name: win/default
     steps: 
       - checkout    
       - run: dotnet build
