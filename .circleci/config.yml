@@ -1,3 +1,4 @@
+#Remember and use cache and env variables
 jobs: 
   build: 
     docker:
