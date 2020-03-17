@@ -15,13 +15,14 @@ jobs:
           name: Open Visual Studio Dev Cmd
           command:              
             C:/"Program Files (x86)"/"Microsoft Visual Studio"/2019/Community/Common7/Tools/VsDevCmd.bat
+            VSTest.Console/? 
       #Vstest.console.exe C:/Users/circleci/project/bhamTAF/bin/Debug/netcoreapp3.1/bhamTAF.dll
       
       - run:
           requires:
             - Open Visual Studio Dev Cmd
           command:
-            VSTest.Console/? 
+            #VSTest.Console/? 
             #Vstest.console.exe C:/Users/circleci/project/bhamTAF/bin/Debug/netcoreapp3.1/bhamTAF.dll
       
       #- run:
