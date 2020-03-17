@@ -18,10 +18,10 @@ jobs:
             VSTest.Console/? 
       #Vstest.console.exe C:/Users/circleci/project/bhamTAF/bin/Debug/netcoreapp3.1/bhamTAF.dll
       
-      - run:
-          requires:
-            - Open Visual Studio Dev Cmd
-          command:
+      #- run:
+      #    requires:
+      #      - Open Visual Studio Dev Cmd
+      #    command:
             #VSTest.Console/? 
             #Vstest.console.exe C:/Users/circleci/project/bhamTAF/bin/Debug/netcoreapp3.1/bhamTAF.dll
       
