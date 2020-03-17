@@ -7,6 +7,8 @@ jobs:
       - checkout
       - run: mkdir -p my_workspace      
       - run: dotnet build
+      - run: ls
+      - run: dir
       - run: cd /root/project/bhamTAF
        
   test: 
