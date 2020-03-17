@@ -11,9 +11,9 @@ jobs:
       - checkout    
       - run: dotnet build
       - run: |
-        ls
-        cd bhamTAF/bin/Debug/netcoreapp3.1
-        ls      
+          ls
+          cd bhamTAF/bin/Debug/netcoreapp3.1
+          ls      
       
       - run: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\vsdevcmd\core
       - run: Vstest.console.exe bhamTAF.dll 
