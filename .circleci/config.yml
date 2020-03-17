@@ -12,8 +12,8 @@ jobs:
     docker:
       - image: mcr.microsoft.com/dotnet/core/sdk:3.1    
     steps: 
-      - run: ls
-      - run: dir
+      - run: echo ls
+      - run: echo dir
       - run: cd C:\\Dev\\bhamTAF\\bhamTAF\\bin\\Debug\\netcoreapp3.1
       - run: Vstest.console.exe bhamTAF.dll      
        
