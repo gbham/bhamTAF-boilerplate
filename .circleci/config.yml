@@ -1,14 +1,19 @@
 #Remember and use cache, env variables and persist_to_workspace/attach_workspace.
+version: 2.1
+orbs:
+  win: circleci/windows@2.2.0
+  
 jobs: 
   build: 
-    docker:
-      - image: mcr.microsoft.com/dotnet/core/sdk:3.1
+    executor:
+      - name: win/default
     steps: 
       - checkout    
       - run: dotnet build
       - run: ls
       - run: cd /root/project/bhamTAF
       - run: ls
+      - run: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\vsdevcmd\core
       - run: Vstest.console.exe bhamTAF.dll 
        
   test: 
