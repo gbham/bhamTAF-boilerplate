@@ -12,10 +12,12 @@ jobs:
       - run: dotnet build
       - run: |
           VSTest.Console/?
-          cd "C:\Program Files (x86)"
+          cd "C:\Program Files (x86)\Microsoft Visual Studio\"
           ls
-          cd bhamTAF/bin/Debug/netcoreapp3.1               
-          Vstest.console.exe bhamTAF.dll
+          
+          
+      #cd bhamTAF/bin/Debug/netcoreapp3.1               
+      #Vstest.console.exe bhamTAF.dll
       
       #- run: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\vsdevcmd\core\vsdevcmd_start.bat
       #- run: Vstest.console.exe bhamTAF.dll 
