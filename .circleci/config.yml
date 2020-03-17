@@ -17,7 +17,7 @@ jobs:
             C:/"Program Files (x86)"/"Microsoft Visual Studio"/2019/Community/Common7/Tools/VsDevCmd.bat
             ping 127.0.0.1 -n 15
             ls
-            VSTest.Console
+      #VSTest.Console
       #VSTest.Console/? 
             
       #Vstest.console.exe C:/Users/circleci/project/bhamTAF/bin/Debug/netcoreapp3.1/bhamTAF.dll
