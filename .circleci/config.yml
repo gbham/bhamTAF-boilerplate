@@ -23,7 +23,7 @@ jobs:
           requires:
             - Open Visual Studio Dev Cmd
           command:
-            VSTest.Console/? 
+            VSTest.Console 
             #Vstest.console.exe C:/Users/circleci/project/bhamTAF/bin/Debug/netcoreapp3.1/bhamTAF.dll
       
       #- run:
