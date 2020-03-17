@@ -10,19 +10,22 @@ jobs:
     steps: 
       - checkout    
       - run: dotnet build
-      - run: |          
-          "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat"
-          Vstest.console.exe C:/Users/circleci/project/bhamTAF/bin/Debug/netcoreapp3.1/bhamTAF.dll
-      
-      
-      
-      
-      #- run:
-      #    shell: "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\Tools\\vsdevcmd\\core\\vsdevcmd_start.bat"
-      #    command: |
-      #      Vstest.console.exe C:/Users/circleci/project/bhamTAF/bin/Debug/netcoreapp3.1/bhamTAF.dll
+      - run:
+          shell: "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat"
+          command: |
+            Vstest.console.exe C:/Users/circleci/project/bhamTAF/bin/Debug/netcoreapp3.1/bhamTAF.dll
             
       
+      
+      
+      #- run: |          
+      #    "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat"
+      #Vstest.console.exe C:/Users/circleci/project/bhamTAF/bin/Debug/netcoreapp3.1/bhamTAF.dll
+      
+      
+      
+      
+     
       
          
          
