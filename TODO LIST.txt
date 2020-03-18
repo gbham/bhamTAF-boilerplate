@@ -4,6 +4,14 @@
 -Add enviromental variables
 -Create a "GetWebElements()"
 -ensure access modifiers are appropriate
+-ensure consistency with either camelCase or PascalCase
+-When trying to verify a page has loaded, just use Driver.Title, but ensure there is a 
+common element like "Sign In" that can be used too as just the page title wont work as that will be availiable before the elements have loaded
+-not sure how many of my "WaitUntilElementIsDisplayedAndEnabled" are actually needed since I have a 'wait' for when each page loads now
+-Ensure consistency when using "var element ..." or using a more specific name. It is fine to use just element for the generic functions in WebPage but the
+one in ShoppingCartPage for example should maybe be unique like "var commentBox = ...."
+-fix issue with catching errors and printing out the correct corresponding element names to identify them by in the logs. A lot of the <a> tags 
+have class names with spaces in them so cant use them. One <a> tag I just checked had a title so that may be something I can use. 
 
 Other potential scenarios:
 -Add item to cart (select quantity, sixe, color)
@@ -18,3 +26,4 @@ Other potential scenarios:
 -the compare items function
 -Error response when terms of service box not click
 -Verify product counts in shopping cart
+-Download pdf invoice from order history then verify existence in file system

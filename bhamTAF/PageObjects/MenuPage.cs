@@ -8,9 +8,13 @@ namespace PageObjects
     public class MenuPage : WebPage
     {
         protected const string SELECTOR_CLASS_LOGIN_BTN = "login";
+        protected const string SELECTOR_CLASS_MY_ACCOUNT_BTN = "account";        
         protected const string SELECTOR_ID_EMAIL_ADDRESS_FIELD_SIGN_IN = "email";
         protected const string SELECTOR_ID_HOMEPAGE_LOGO = "header_logo";
         protected const string SELECTOR_CLASS_CATEGORY_NAME = "category-name";
+        protected const string SELECTOR_CLASS_PAGE_NAME = "navigation_page";
+
+        public override string PAGE_TITLE { get { return "Dont want one in this class, assess options"; } set { } }
 
         public MenuPage(IWebDriver Driver) : base(Driver)
         {
@@ -22,19 +26,21 @@ namespace PageObjects
             var homePageLogo = GetWebElement(By.Id(SELECTOR_ID_HOMEPAGE_LOGO));
             ClickElement(homePageLogo);
 
-            WaitUntilElementisDisplayedAndEnabled(By.Id(SELECTOR_ID_HOMEPAGE_LOGO));
+            var HomePage = new HomePage(Driver);
+            HomePage.WaitUntilPageHasLoaded();
 
-            return new HomePage(Driver);
+            return HomePage;
         }
 
         public LoginPage GoToLoginPage()
         {
-            var LoginPageBtn = GetWebElement(By.ClassName(SELECTOR_CLASS_LOGIN_BTN));
-            ClickElement(LoginPageBtn);
+            var loginPageBtn = GetWebElement(By.ClassName(SELECTOR_CLASS_LOGIN_BTN));
+            ClickElement(loginPageBtn);
 
-            WaitUntilElementisDisplayedAndEnabled(By.Id(SELECTOR_ID_EMAIL_ADDRESS_FIELD_SIGN_IN));
+            var LoginPage = new LoginPage(Driver);
+            LoginPage.WaitUntilPageHasLoaded();
 
-            return new LoginPage(Driver);
+            return LoginPage;
         }
 
         public DressesPage GoToDressesPage()
@@ -52,26 +58,21 @@ namespace PageObjects
                 }
             }
 
-            WaitUntilDressesPageHasLoaded();
+            var DressesPage = new DressesPage(Driver);
+            DressesPage.WaitUntilPageHasLoaded();
 
-            return new DressesPage(Driver);
+            return DressesPage;
         }
 
-        //Make more of these for each page, what is serving the purpose above wont work long term since the selectors arent unique
-        //may need to extract this somewhere more specific
-        public void WaitUntilDressesPageHasLoaded()
+        public MyAccountPage GoToMyAccountPage()
         {
-            GetWaitForFiveSeconds().Until(d =>
-            {                
-                var pageTitle = GetWebElement(By.ClassName(SELECTOR_CLASS_CATEGORY_NAME)).Text;
-                                      
-                if(pageTitle.Equals("Dresses"))
-                {
-                    return true;
-                }                
+            var myAccountBtn = GetWebElement(By.ClassName(SELECTOR_CLASS_MY_ACCOUNT_BTN));
+            ClickElement(myAccountBtn);
 
-                return false;
-            });
-        }
+            var MyAccountPage = new MyAccountPage(Driver);
+            MyAccountPage.WaitUntilPageHasLoaded();
+
+            return MyAccountPage;
+        }          
     }
 }

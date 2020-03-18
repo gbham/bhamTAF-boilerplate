@@ -1,6 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using System;
 
 namespace PageObjects
 {
@@ -21,6 +19,8 @@ namespace PageObjects
         private const string SELECTOR_ID_POSTCODE = "postcode"; 
         private const string SELECTOR_ID_MOBILE = "phone_mobile";
         private const string SELECTOR_ID_REGISTER_BTN = "submitAccount";
+
+        public override string PAGE_TITLE { get { return "Login - My Store"; } set { } }
 
         public RegisterPage(IWebDriver Driver) : base(Driver)
         {
@@ -159,12 +159,12 @@ namespace PageObjects
 
         }
         
-        public AccountPage ClickRegister()
+        public MyAccountPage ClickRegister()
         {
             var element = GetWebElement(By.Id(SELECTOR_ID_REGISTER_BTN));
             ClickElement(element);
 
-            return new AccountPage(Driver);
+            return new MyAccountPage(Driver);
         }
     }
 }

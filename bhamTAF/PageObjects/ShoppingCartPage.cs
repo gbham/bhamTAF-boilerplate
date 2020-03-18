@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using System;
+using System.Threading;
 
 namespace PageObjects
 {
@@ -13,6 +14,8 @@ namespace PageObjects
         private const string SELECTOR_CSS_PAY_BY_BANK_WIRE_BTN = "#HOOK_PAYMENT > div:nth-child(1) > div > p > a";
         private const string SELECTOR_CSS_CONFRIM_ORDER_BTN = "#cart_navigation > button";
 
+        public override string PAGE_TITLE { get { return "ShoppingCartPage"; } set { } }
+
         public ShoppingCartPage(IWebDriver Driver) : base(Driver)
         {
         }
@@ -23,7 +26,7 @@ namespace PageObjects
             ClickElement(element);
 
             return this;
-        }
+        }        
 
         //will need a function for "ClickProceedToCheckout_SIGN_IN()" eventually but that stage is skipped in the test since we are signed in already
 
@@ -39,6 +42,16 @@ namespace PageObjects
         {
             var element = GetWebElement(By.CssSelector(SELECTOR_CSS_PROCEED_TO_CHECKOUT_BTN_SHIPPING_SECTION));
             ClickElement(element);
+
+            return this;
+        }
+
+        public ShoppingCartPage EnterRandomCommentAboutOrder()
+        {
+            var element = GetWebElement(By.ClassName("form-control"));
+            EnterText(element, "test");
+
+            Thread.Sleep(4000);
 
             return this;
         }
@@ -65,6 +78,15 @@ namespace PageObjects
             ClickElement(element);
 
             return this;
+        }
+
+        public string GetOrderReference()
+        {
+            var infoBox = GetWebElement(By.ClassName("box")).Text;
+            var index = infoBox.IndexOf("reference");            
+            var orderReference = infoBox.Substring(index + 10, 9);
+
+            return orderReference;
         }
     }
 }

@@ -6,14 +6,15 @@ using System.Threading;
 
 namespace PageObjects
 {
-    public class WebPage
+    public abstract class WebPage 
     {
         protected IWebDriver Driver { get; private set; }
-        protected WebDriverWait Wait { get; private set; }               
+        protected WebDriverWait Wait { get; private set; }
+        public abstract string PAGE_TITLE { get; set; }
 
-        public WebPage(IWebDriver driver)
+        public WebPage(IWebDriver Driver)
         {
-            Driver = driver;            
+            this.Driver = Driver;
         }
         public WebPage()
         {
@@ -26,22 +27,22 @@ namespace PageObjects
                 try
                 {
                     var element = GetWebElement(selector);
-                    return Driver.FindElement(selector).Displayed && Driver.FindElement(selector).Enabled;                    
+                    return Driver.FindElement(selector).Displayed && Driver.FindElement(selector).Enabled;
                 }
                 catch (NoSuchElementException e)
                 {
-                    Console.WriteLine($"CATCH ERROR: {e.Message}");
+                    Console.WriteLine($"CATCH ERROR - {e.Message}");
                     return false;
                 }
                 catch (ElementNotInteractableException e)
                 {
-                    Console.WriteLine($"CATCH ERROR: {e.Message}");
+                    Console.WriteLine($"CATCH ERROR - {e.Message}");
                     return false;
                 }
                 //catch ()
                 //{
                 //}    
-            });            
+            });
         }
 
         public void WaitUntilElementisDisplayed(By selector)
@@ -55,12 +56,12 @@ namespace PageObjects
                 }
                 catch (NoSuchElementException e)
                 {
-                    Console.WriteLine($"CATCH ERROR: {e.Message}");
+                    Console.WriteLine($"CATCH ERROR - {e.Message}");
                     return false;
                 }
                 catch (ElementNotInteractableException e)
                 {
-                    Console.WriteLine($"CATCH ERROR: {e.Message}");
+                    Console.WriteLine($"CATCH ERROR - {e.Message}");
                     return false;
                 }
                 //catch ()
@@ -70,9 +71,8 @@ namespace PageObjects
         }
 
         public IWebElement GetWebElement(By selector)
-        {            
+        {
             IWebElement element = null;
-
             GetWaitForFiveSeconds().Until(d =>
             {
                 try
@@ -82,26 +82,26 @@ namespace PageObjects
                 }
                 catch (NoSuchElementException e)
                 {
-                    Console.WriteLine($"CATCH ERROR: {e.Message}");
+                    Console.WriteLine($"CATCH ERROR - {e.Message}");
                     return false;
                 }
                 catch (ElementNotInteractableException e)
                 {
-                    Console.WriteLine($"CATCH ERROR: {e.Message}");
+                    Console.WriteLine($"CATCH ERROR - {e.Message}");
                     return false;
                 }
                 //catch ()
                 //{
-                //}    
+                //}
             });
-                
+
             return element;
         }
 
         public SelectElement GetSelectWebElement(By selector)
         {
             var element = GetWebElement(selector);
-            var selectElement = new SelectElement(element);            
+            var selectElement = new SelectElement(element);
 
             return selectElement;
         }
@@ -117,12 +117,12 @@ namespace PageObjects
                 }
                 catch (NoSuchElementException e)
                 {
-                    Console.WriteLine($"CATCH ERROR: {e.Message}");
+                    Console.WriteLine($"CATCH ERROR - {e.Message}");
                     return false;
                 }
                 catch (ElementNotInteractableException e)
                 {
-                    Console.WriteLine($"CATCH ERROR: {e.Message}");
+                    Console.WriteLine($"CATCH ERROR - {e.Message}");
                     return false;
                 }
                 //catch ()
@@ -142,12 +142,12 @@ namespace PageObjects
                 }
                 catch (NoSuchElementException e)
                 {
-                    Console.WriteLine($"CATCH ERROR: {e.Message}");
+                    Console.WriteLine($"CATCH ERROR - {e.Message}");
                     return false;
                 }
                 catch (ElementNotInteractableException e)
                 {
-                    Console.WriteLine($"CATCH ERROR: {e.Message}");
+                    Console.WriteLine($"CATCH ERROR - {e.Message}");
                     return false;
                 }
                 //catch ()
@@ -156,11 +156,51 @@ namespace PageObjects
             });
         }
 
+        public void WaitUntilPageHasLoaded()
+        {
+            GetWaitForFiveSeconds().Until(d =>
+            {
+                try
+                {
+                    var contactUsBtn = GetWebElement(By.Id("contact-link"));
+
+                    var expectedPageTitle = GetExpectedPageTitle();
+                    var actualPageTitle = GetPageTitle();
+
+                    return contactUsBtn.Displayed && expectedPageTitle.Equals(actualPageTitle);
+                }
+                catch (NoSuchElementException e)
+                {
+                    Console.WriteLine($"CATCH ERROR - {e.Message}");
+                    return false;
+                }
+                catch (ElementNotInteractableException e)
+                {
+                    Console.WriteLine($"CATCH ERROR - {e.Message}");
+                    return false;
+                }
+                //catch ()
+                //{
+                //} 
+
+            });
+        }
+
         protected void ScrollPageToElement(IWebElement element)
         {
             var actions = new Actions(Driver);
             actions.MoveToElement(element);
             actions.Perform();
+        }
+
+        public string GetExpectedPageTitle()
+        {
+            return PAGE_TITLE;
+        }
+
+        public string GetPageTitle()
+        {
+            return Driver.Title;
         }
 
         public WebDriverWait GetWaitForFiveSeconds()

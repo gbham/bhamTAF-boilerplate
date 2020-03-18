@@ -30,8 +30,8 @@ namespace bhamTAF
                                           .EnterMobile(mobile)
                                           .ClickRegister();
 
-            var ExpectedAccountPageTitle = "My account - My Store";
-            var AccountPageTitle = AccountPage.GetAccountPageTitle();
+            var ExpectedAccountPageTitle = AccountPage.GetExpectedPageTitle();
+            var AccountPageTitle = AccountPage.GetPageTitle();
 
             Assert.AreEqual(ExpectedAccountPageTitle, AccountPageTitle);
 

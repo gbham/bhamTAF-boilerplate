@@ -22,18 +22,20 @@ namespace bhamTAF
                                        .AddItemToShoppingCart("Printed Dress")
                                        .ProceedToCheckout();
 
-            ShoppingCartPage.ClickProceedToCheckout_SummarySection()
-                            //Enter text into comment box
-                            .ClickProceedToCheckout_AddressSection()
-                            .ClickTermsOfServiceCheckbox()
-                            .ClickProceedToCheckout_ShippingSection()
-                            .ClickPayByBankWire()
-                            .ClickConfirmOrder();
-                            //Go to account
-                            //Go to Order history
-                            //Open most recent entry
-                            //Verify product name equals the one that was bought, maybe verify other info in the confirmation notice
+            var orderReference = ShoppingCartPage.ClickProceedToCheckout_SummarySection()
+                                                 .EnterRandomCommentAboutOrder()
+                                                 .ClickProceedToCheckout_AddressSection()
+                                                 .ClickTermsOfServiceCheckbox()
+                                                 .ClickProceedToCheckout_ShippingSection()
+                                                 .ClickPayByBankWire()
+                                                 .ClickConfirmOrder()
+                                                 .GetOrderReference();
 
+            var mostRecentOrderReference = Menu.GoToMyAccountPage()
+                                               .ClickOrderHistory()
+                                               .GetMostRecentOrderReference();
+
+            Assert.AreEqual(orderReference, mostRecentOrderReference);   
 
             Thread.Sleep(5000);
         }

@@ -16,6 +16,8 @@ namespace PageObjects
         private const string EMAIL_ADDRESS = "tester@random.com";
         private const string PASSWORD = "password";
 
+        public override string PAGE_TITLE { get { return "Login - My Store"; } set { } }
+
         public LoginPage(IWebDriver Driver) : base(Driver)
         {
         }

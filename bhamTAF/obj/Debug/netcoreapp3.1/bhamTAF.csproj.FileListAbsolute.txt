@@ -6,6 +6,7 @@ C:\Dev\bhamTAF\bhamTAF\bin\Debug\netcoreapp3.1\bhamTAF.deps.json
 C:\Dev\bhamTAF\bhamTAF\bin\Debug\netcoreapp3.1\bhamTAF.runtimeconfig.json
 C:\Dev\bhamTAF\bhamTAF\bin\Debug\netcoreapp3.1\bhamTAF.runtimeconfig.dev.json
 C:\Dev\bhamTAF\bhamTAF\bin\Debug\netcoreapp3.1\bhamTAF.dll
+C:\Dev\bhamTAF\bhamTAF\bin\Debug\netcoreapp3.1\bhamTAF.pdb
 C:\Dev\bhamTAF\bhamTAF\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.CodeCoverage.Shim.dll
 C:\Dev\bhamTAF\bhamTAF\bin\Debug\netcoreapp3.1\Microsoft.DotNet.InternalAbstractions.dll
 C:\Dev\bhamTAF\bhamTAF\bin\Debug\netcoreapp3.1\Microsoft.TestPlatform.CoreUtilities.dll
@@ -87,12 +88,11 @@ C:\Dev\bhamTAF\bhamTAF\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.VisualStudio.Te
 C:\Dev\bhamTAF\bhamTAF\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
 C:\Dev\bhamTAF\bhamTAF\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 C:\Dev\bhamTAF\bhamTAF\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-C:\Dev\bhamTAF\bhamTAF\obj\Debug\netcoreapp3.1\bhamTAF.csprojAssemblyReference.cache
+C:\Dev\bhamTAF\bhamTAF\obj\Debug\netcoreapp3.1\bhamTAF.csproj.CoreCompileInputs.cache
 C:\Dev\bhamTAF\bhamTAF\obj\Debug\netcoreapp3.1\bhamTAF.AssemblyInfoInputs.cache
 C:\Dev\bhamTAF\bhamTAF\obj\Debug\netcoreapp3.1\bhamTAF.AssemblyInfo.cs
 C:\Dev\bhamTAF\bhamTAF\obj\Debug\netcoreapp3.1\bhamTAF.csproj.CopyComplete
-C:\Dev\bhamTAF\bhamTAF\obj\Debug\netcoreapp3.1\bhamTAF.genruntimeconfig.cache
-C:\Dev\bhamTAF\bhamTAF\bin\Debug\netcoreapp3.1\bhamTAF.pdb
-C:\Dev\bhamTAF\bhamTAF\obj\Debug\netcoreapp3.1\bhamTAF.csproj.CoreCompileInputs.cache
 C:\Dev\bhamTAF\bhamTAF\obj\Debug\netcoreapp3.1\bhamTAF.dll
 C:\Dev\bhamTAF\bhamTAF\obj\Debug\netcoreapp3.1\bhamTAF.pdb
+C:\Dev\bhamTAF\bhamTAF\obj\Debug\netcoreapp3.1\bhamTAF.genruntimeconfig.cache
+C:\Dev\bhamTAF\bhamTAF\obj\Debug\netcoreapp3.1\bhamTAF.csprojAssemblyReference.cache
