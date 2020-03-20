@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -10,7 +11,9 @@ namespace PageObjects
     {
         protected IWebDriver Driver { get; private set; }
         protected WebDriverWait Wait { get; private set; }
-        public abstract string PAGE_TITLE { get; set; }
+        public virtual string PAGE_TITLE { get; set; }
+
+        const string SELECTOR_ID_CONTACT_US_BTN = "contact-link";
 
         public WebPage(IWebDriver Driver)
         {
@@ -38,10 +41,7 @@ namespace PageObjects
                 {
                     Console.WriteLine($"CATCH ERROR - {e.Message}");
                     return false;
-                }
-                //catch ()
-                //{
-                //}    
+                }  
             });
         }
 
@@ -63,10 +63,7 @@ namespace PageObjects
                 {
                     Console.WriteLine($"CATCH ERROR - {e.Message}");
                     return false;
-                }
-                //catch ()
-                //{
-                //}    
+                } 
             });
         }
 
@@ -90,9 +87,6 @@ namespace PageObjects
                     Console.WriteLine($"CATCH ERROR - {e.Message}");
                     return false;
                 }
-                //catch ()
-                //{
-                //}
             });
 
             return element;
@@ -124,10 +118,7 @@ namespace PageObjects
                 {
                     Console.WriteLine($"CATCH ERROR - {e.Message}");
                     return false;
-                }
-                //catch ()
-                //{
-                //}    
+                }  
             });
         }
 
@@ -149,10 +140,7 @@ namespace PageObjects
                 {
                     Console.WriteLine($"CATCH ERROR - {e.Message}");
                     return false;
-                }
-                //catch ()
-                //{
-                //}    
+                } 
             });
         }
 
@@ -162,7 +150,7 @@ namespace PageObjects
             {
                 try
                 {
-                    var contactUsBtn = GetWebElement(By.Id("contact-link"));
+                    var contactUsBtn = GetWebElement(By.Id(SELECTOR_ID_CONTACT_US_BTN));
 
                     var expectedPageTitle = GetExpectedPageTitle();
                     var actualPageTitle = GetPageTitle();
@@ -179,10 +167,6 @@ namespace PageObjects
                     Console.WriteLine($"CATCH ERROR - {e.Message}");
                     return false;
                 }
-                //catch ()
-                //{
-                //} 
-
             });
         }
 
@@ -201,6 +185,36 @@ namespace PageObjects
         public string GetPageTitle()
         {
             return Driver.Title;
+        }
+
+        protected void VerifyElementIsInvisible(IWebElement element)
+        {
+            try
+            {
+                //Decided not to log these exceptions for the moment as they are expected but also since it may do more harm than good 
+                //by causing confusion in the logs. At least it might in the current set up where it is not clear in the logs what element/function the 
+                //exception has been thrown from
+                GetWaitForFiveSeconds().Until(d =>
+                {
+                    try
+                    {
+                        return !element.Displayed;
+                    }                    
+                    catch (NoSuchElementException e)
+                    {
+                        return true;
+                    }                                       
+                    catch (StaleElementReferenceException e)
+                    {
+                        return true;
+                    }
+                });
+            }
+            catch (WebDriverTimeoutException)
+            {
+                Console.WriteLine($"TEST FAILED: Element ['{element.Text}'] is NOT meant to be visibile");
+                Assert.Fail();                
+            }
         }
 
         public WebDriverWait GetWaitForFiveSeconds()

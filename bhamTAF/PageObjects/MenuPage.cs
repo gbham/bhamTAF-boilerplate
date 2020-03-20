@@ -13,6 +13,7 @@ namespace PageObjects
         protected const string SELECTOR_ID_HOMEPAGE_LOGO = "header_logo";
         protected const string SELECTOR_CLASS_CATEGORY_NAME = "category-name";
         protected const string SELECTOR_CLASS_PAGE_NAME = "navigation_page";
+        protected const string SELECTOR_ID_PRODUCT_MENU = "block_top_menu";
 
         public override string PAGE_TITLE { get { return "Dont want one in this class, assess options"; } set { } }
 
@@ -45,7 +46,7 @@ namespace PageObjects
 
         public DressesPage GoToDressesPage()
         {
-            var menu = GetWebElement(By.Id("block_top_menu"));
+            var menu = GetWebElement(By.Id(SELECTOR_ID_PRODUCT_MENU));
 
             var menuList = menu.FindElements(By.TagName("li"));
 

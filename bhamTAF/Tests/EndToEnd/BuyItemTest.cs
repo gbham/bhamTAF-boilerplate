@@ -22,7 +22,7 @@ namespace bhamTAF
                                        .AddItemToShoppingCart("Printed Dress")
                                        .ProceedToCheckout();
 
-            var orderReference = ShoppingCartPage.ClickProceedToCheckout_SummarySection()
+            var expectedOrderReference = ShoppingCartPage.ClickProceedToCheckout_SummarySection()
                                                  .EnterRandomCommentAboutOrder()
                                                  .ClickProceedToCheckout_AddressSection()
                                                  .ClickTermsOfServiceCheckbox()
@@ -31,11 +31,11 @@ namespace bhamTAF
                                                  .ClickConfirmOrder()
                                                  .GetOrderReference();
 
-            var mostRecentOrderReference = Menu.GoToMyAccountPage()
+            var actualOrderReference = Menu.GoToMyAccountPage()
                                                .ClickOrderHistory()
                                                .GetMostRecentOrderReference();
 
-            Assert.AreEqual(orderReference, mostRecentOrderReference);   
+            Assert.AreEqual(expectedOrderReference, actualOrderReference);   
 
             Thread.Sleep(5000);
         }

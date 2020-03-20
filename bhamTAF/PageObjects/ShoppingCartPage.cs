@@ -10,9 +10,11 @@ namespace PageObjects
         private const string SELECTOR_CSS_PROCEED_TO_CHECKOUT_BTN_ADDRESS_SECTION = "#center_column > form > p > button";
         private const string SELECTOR_CSS_PROCEED_TO_CHECKOUT_BTN_SHIPPING_SECTION = "#form > p > button";
 
+        private const string SELECTOR_XPATH_COMMENT_BOX = "//*[@id='ordermsg']/textarea";
         private const string SELECTOR_ID_TERMS_OF_SERVICE_CHECKBOX = "cgv";
         private const string SELECTOR_CSS_PAY_BY_BANK_WIRE_BTN = "#HOOK_PAYMENT > div:nth-child(1) > div > p > a";
         private const string SELECTOR_CSS_CONFRIM_ORDER_BTN = "#cart_navigation > button";
+        private const string SELECTOR_CLASS_ORDER_INFO = "box";        
 
         public override string PAGE_TITLE { get { return "ShoppingCartPage"; } set { } }
 
@@ -45,13 +47,11 @@ namespace PageObjects
 
             return this;
         }
-
+        
         public ShoppingCartPage EnterRandomCommentAboutOrder()
         {
-            var element = GetWebElement(By.ClassName("form-control"));
-            EnterText(element, "test");
-
-            Thread.Sleep(4000);
+            var element = GetWebElement(By.XPath(SELECTOR_XPATH_COMMENT_BOX));                        
+            EnterText(element, "test comment");
 
             return this;
         }
@@ -82,7 +82,8 @@ namespace PageObjects
 
         public string GetOrderReference()
         {
-            var infoBox = GetWebElement(By.ClassName("box")).Text;
+            var infoBox = GetWebElement(By.ClassName(SELECTOR_CLASS_ORDER_INFO)).Text;
+
             var index = infoBox.IndexOf("reference");            
             var orderReference = infoBox.Substring(index + 10, 9);
 

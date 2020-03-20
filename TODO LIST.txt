@@ -12,6 +12,10 @@ common element like "Sign In" that can be used too as just the page title wont w
 one in ShoppingCartPage for example should maybe be unique like "var commentBox = ...."
 -fix issue with catching errors and printing out the correct corresponding element names to identify them by in the logs. A lot of the <a> tags 
 have class names with spaces in them so cant use them. One <a> tag I just checked had a title so that may be something I can use. 
+-Use LINQ where appropriate
+-If I have a GetWebElement() as the first action in a function, then I dont think I need to have a WaitUntilElementDisplayed() at the beginning of the function in question
+-Need a better system of loggin exceptions. It needs to be clear in the logs exactly what element/function the exception was thrown from
+
 
 Other potential scenarios:
 -Add item to cart (select quantity, sixe, color)
