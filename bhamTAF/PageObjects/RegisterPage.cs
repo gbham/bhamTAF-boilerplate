@@ -20,7 +20,7 @@ namespace PageObjects
         private const string SELECTOR_ID_MOBILE = "phone_mobile";
         private const string SELECTOR_ID_REGISTER_BTN = "submitAccount";
 
-        public override string PAGE_TITLE { get { return "Login - My Store"; } set { } }
+        protected override string PAGE_TITLE { get { return "Login - My Store"; } set { } }
 
         public RegisterPage(IWebDriver Driver) : base(Driver)
         {
@@ -28,8 +28,6 @@ namespace PageObjects
 
         public RegisterPage ClickRadioBtnForMr()
         {
-            WaitUntilElementisDisplayedAndEnabled(By.Id(SELECTOR_ID_RADIO_BTN_MR));
-
             var element = GetWebElement(By.Id(SELECTOR_ID_RADIO_BTN_MR));
             ClickElement(element);            
 
@@ -38,8 +36,6 @@ namespace PageObjects
 
         public RegisterPage ClickRadioBtnForMrs()
         {
-            WaitUntilElementisDisplayedAndEnabled(By.Id(SELECTOR_ID_RADIO_BTN_MRS));
-
             var element = GetWebElement(By.Id(SELECTOR_ID_RADIO_BTN_MRS));
             ClickElement(element);            
 
@@ -48,8 +44,6 @@ namespace PageObjects
 
         public RegisterPage EnterFirstname(string firstname)
         {
-            WaitUntilElementisDisplayedAndEnabled(By.Id(SELECTOR_ID_FIRSTNAME));
-
             var element = GetWebElement(By.Id(SELECTOR_ID_FIRSTNAME));
             EnterText(element, firstname);
 
@@ -58,8 +52,6 @@ namespace PageObjects
 
         public RegisterPage EnterSurname(string surname)
         {
-            WaitUntilElementisDisplayedAndEnabled(By.Id(SELECTOR_ID_SURNAME));
-
             var element = GetWebElement(By.Id(SELECTOR_ID_SURNAME));
             EnterText(element, surname);
 
@@ -68,8 +60,6 @@ namespace PageObjects
 
         public RegisterPage EnterPassword(string password)
         {
-            WaitUntilElementisDisplayedAndEnabled(By.Id(SELECTOR_ID_PASSWORD));
-
             var element = GetWebElement(By.Id(SELECTOR_ID_PASSWORD));
             EnterText(element, password);
 
@@ -77,24 +67,20 @@ namespace PageObjects
         }
 
         public RegisterPage EnterRandomDOB()
-        {       
-            WaitUntilElementisDisplayed(By.Id(SELECTOR_ID_SURNAME));
+        { 
+            var Days = GetSelectWebElement(By.Id(SELECTOR_ID_DAYS_DDL));
+            var Months = GetSelectWebElement(By.Id(SELECTOR_ID_MONTHS_DDL));
+            var Years = GetSelectWebElement(By.Id(SELECTOR_ID_YEARS_DDL));
 
-            var days = GetSelectWebElement(By.Id(SELECTOR_ID_DAYS_DDL));
-            var months = GetSelectWebElement(By.Id(SELECTOR_ID_MONTHS_DDL));
-            var years = GetSelectWebElement(By.Id(SELECTOR_ID_YEARS_DDL));
-
-            days.SelectByValue("4");
-            months.SelectByValue("8");
-            years.SelectByValue("1900");
+            Days.SelectByValue("4");
+            Months.SelectByValue("8");
+            Years.SelectByValue("1900");
 
             return this;
         }
 
         public RegisterPage ClickSignUpForNewsletterCheckbox()
         {
-            WaitUntilElementisDisplayed(By.Id(SELECTOR_ID_SURNAME));
-
             var element = GetWebElement(By.Id(SELECTOR_ID_SIGNUP_NEWSLETTER_CHECKBOX));
             ClickElement(element);
 
@@ -103,8 +89,6 @@ namespace PageObjects
 
         public RegisterPage EnterAddress(string address)
         {
-            WaitUntilElementisDisplayedAndEnabled(By.Id(SELECTOR_ID_ADDRESS_1));
-
             var element = GetWebElement(By.Id(SELECTOR_ID_ADDRESS_1));
             EnterText(element, address);
             
@@ -112,9 +96,7 @@ namespace PageObjects
         }
 
         public RegisterPage EnterCity(string city)
-        {
-            WaitUntilElementisDisplayedAndEnabled(By.Id(SELECTOR_ID_CITY));
-
+        {            
             var element = GetWebElement(By.Id(SELECTOR_ID_CITY));
             EnterText(element, city);
 
@@ -123,8 +105,6 @@ namespace PageObjects
 
         public RegisterPage EnterState(string state)
         {
-            WaitUntilElementisDisplayedAndEnabled(By.Id(SELECTOR_ID_SURNAME));
-
             var selectElement = GetSelectWebElement(By.Id(SELECTOR_ID_STATE));            
             selectElement.SelectByText(state);
 
@@ -133,8 +113,6 @@ namespace PageObjects
 
         public RegisterPage EnterPostcode(string postcode)
         {
-            WaitUntilElementisDisplayedAndEnabled(By.Id(SELECTOR_ID_POSTCODE));
-
             var element = GetWebElement(By.Id(SELECTOR_ID_POSTCODE));
             EnterText(element, postcode);            
 
@@ -143,8 +121,6 @@ namespace PageObjects
 
         public RegisterPage EnterMobile(string mobile)
         {
-            WaitUntilElementisDisplayedAndEnabled(By.Id(SELECTOR_ID_MOBILE));
-
             var element = GetWebElement(By.Id(SELECTOR_ID_MOBILE));
             EnterText(element, mobile);
 
@@ -160,6 +136,18 @@ namespace PageObjects
         }
         
         public MyAccountPage ClickRegister()
+        {
+            var element = GetWebElement(By.Id(SELECTOR_ID_REGISTER_BTN));
+            ClickElement(element);
+
+            var MyAccountPage = new MyAccountPage(Driver);
+            MyAccountPage.WaitUntilPageHasLoaded();
+
+            return MyAccountPage;
+        }
+
+        //Duplicate function except this one has no WaitUntilPageLoaded() function for MyAccountPage
+        public MyAccountPage ClickRegisterExpectingError()
         {
             var element = GetWebElement(By.Id(SELECTOR_ID_REGISTER_BTN));
             ClickElement(element);

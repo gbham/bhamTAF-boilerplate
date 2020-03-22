@@ -8,9 +8,8 @@ namespace PageObjects
     public class HomePage : WebPage
     {
         protected const string HOME_URL = "http://www.automationpractice.com";
-        protected const string SELECTOR_ID_HOMEPAGE_LOGO = "header_logo";
 
-        public override string PAGE_TITLE { get { return "My Store"; } set { } }
+        protected override string PAGE_TITLE { get { return "My Store"; } set { } }
 
         public HomePage(IWebDriver Driver): base(Driver)
         {           
@@ -22,8 +21,6 @@ namespace PageObjects
             Driver.Manage().Window.Maximize();
 
             WaitUntilPageHasLoaded();
-
-            //WaitUntilElementisDisplayedAndEnabled(By.Id(SELECTOR_ID_HOMEPAGE_LOGO));
         }     
     }
 }

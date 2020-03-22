@@ -1,5 +1,4 @@
 -Ensure using exception error message in output (i.e $"Catch Error: {e.Message})
--Add more execptions to catch blocks
 -Use abstract classes where appropiate
 -Add enviromental variables
 -Create a "GetWebElements()"
@@ -19,6 +18,7 @@ have class names with spaces in them so cant use them. One <a> tag I just checke
 -Add functionality to take a screenshot when a test fails
 
 Other potential scenarios:
+-Download pdf invoice from order history then verify existence in file system
 -Add item to cart (select quantity, sixe, color)
 -Buy an item (entire process) then verify in order history
 -Leave review
@@ -31,9 +31,7 @@ Other potential scenarios:
 -the compare items function
 -Error response when terms of service box not click
 -Verify product counts in shopping cart
--Download pdf invoice from order history then verify existence in file system
 -Sign up for newsletter
 -Send product to friend via email
--Contact Us function send message
 -Edit personal information in My Account section
 -Stuff to do with creating, deleteing, updating address in My Account section

@@ -12,9 +12,10 @@ namespace PageObjects
         private const string SELECTOR_ID_LOGIN_BTN = "SubmitLogin";        
         private const string EMAIL_ADDRESS = "tester@random.com";
         private const string PASSWORD = "password";
-        private string RANDOM_EMAIL_ADDRESS = $"{Guid.NewGuid()}@test.com";
 
-        public override string PAGE_TITLE { get { return "Login - My Store"; } set { } }
+        readonly string  RANDOM_EMAIL_ADDRESS = $"{Guid.NewGuid()}@test.com";
+
+        protected override string PAGE_TITLE { get { return "Login - My Store"; } set { } }
 
         public LoginPage(IWebDriver Driver) : base(Driver)
         {
@@ -33,7 +34,10 @@ namespace PageObjects
             var element = GetWebElement(By.Id(SELECTOR_ID_CREATE_ACCOUNT_BTN));
             ClickElement(element);
 
-            return new RegisterPage(Driver);
+            var RegisterPage = new RegisterPage(Driver);
+            RegisterPage.WaitUntilPageHasLoaded();
+
+            return RegisterPage;
         }
 
         public LoginPage EnterEmailAddress()
@@ -46,8 +50,6 @@ namespace PageObjects
 
         public LoginPage EnterPassword()
         {
-            WaitUntilElementisDisplayedAndEnabled(By.Id(SELECTOR_ID_PASSWORD_FIELD));
-
             var element = GetWebElement(By.Id(SELECTOR_ID_PASSWORD_FIELD));
             EnterText(element, PASSWORD);
 

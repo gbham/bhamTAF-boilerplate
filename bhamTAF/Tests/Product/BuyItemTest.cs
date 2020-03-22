@@ -22,20 +22,20 @@ namespace bhamTAF
                                        .AddItemToShoppingCart("Printed Dress")
                                        .ProceedToCheckout();
 
-            var expectedOrderReference = ShoppingCartPage.ClickProceedToCheckout_SummarySection()
-                                                 .EnterRandomCommentAboutOrder()
-                                                 .ClickProceedToCheckout_AddressSection()
-                                                 .ClickTermsOfServiceCheckbox()
-                                                 .ClickProceedToCheckout_ShippingSection()
-                                                 .ClickPayByBankWire()
-                                                 .ClickConfirmOrder()
-                                                 .GetOrderReference();
+            var ExpectedOrderReference = ShoppingCartPage.ClickProceedToCheckout_SummarySection()
+                                                         .EnterRandomCommentAboutOrder()
+                                                         .ClickProceedToCheckout_AddressSection()
+                                                         .ClickTermsOfServiceCheckbox()
+                                                         .ClickProceedToCheckout_ShippingSection()
+                                                         .ClickPayByBankWire()
+                                                         .ClickConfirmOrder()
+                                                         .GetOrderReference();
 
-            var actualOrderReference = Menu.GoToMyAccountPage()
-                                               .ClickOrderHistory()
-                                               .GetMostRecentOrderReference();
+            var ActualOrderReference = Menu.GoToMyAccountPage()
+                                            .ClickOrderHistory()
+                                            .GetMostRecentOrderReference();
 
-            Assert.AreEqual(expectedOrderReference, actualOrderReference);   
+            Assert.AreEqual(ExpectedOrderReference, ActualOrderReference);   
 
         }
     }

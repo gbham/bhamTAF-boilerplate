@@ -12,7 +12,7 @@ namespace PageObjects
         private const string SELECTOR_ID_FILE_UPLOAD = "fileUpload";
         private const string SELECTOR_ID_SEND_BTN = "submitMessage";
 
-        public override string PAGE_TITLE { get { return "Contact us - My Store"; } set { } }
+        protected override string PAGE_TITLE { get { return "Contact us - My Store"; } set { } }
 
         public ContactUsPage(IWebDriver Driver) : base(Driver)
         {
@@ -50,7 +50,7 @@ namespace PageObjects
             return this;
         }
 
-        internal ContactUsPage Send()
+        public ContactUsPage Send()
         {
             var element = GetWebElement(By.Id(SELECTOR_ID_SEND_BTN));
             ClickElement(element);

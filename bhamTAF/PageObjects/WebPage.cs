@@ -11,9 +11,9 @@ namespace PageObjects
     {
         protected IWebDriver Driver { get; private set; }
         protected WebDriverWait Wait { get; private set; }
-        public virtual string PAGE_TITLE { get; set; }
+        protected virtual string PAGE_TITLE { get; set; }
 
-        const string SELECTOR_ID_CONTACT_US_BTN = "contact-link";
+        private const string SELECTOR_ID_CONTACT_US_BTN = "contact-link";
 
         public WebPage(IWebDriver Driver)
         {
@@ -23,14 +23,24 @@ namespace PageObjects
         {
         }
 
+        public string GetPageTitle()
+        {
+            return Driver.Title;
+        }
+
+        public string GetExpectedPageTitle()
+        {
+            return PAGE_TITLE;
+        }
+
         public void WaitUntilElementisDisplayedAndEnabled(By selector)
         {
-            GetWaitForFiveSeconds().Until(d =>
+            GetWaitForXSeconds().Until(d =>
             {
                 try
                 {
                     var element = GetWebElement(selector);
-                    return Driver.FindElement(selector).Displayed && Driver.FindElement(selector).Enabled;
+                    return d.FindElement(selector).Displayed && d.FindElement(selector).Enabled;
                 }
                 catch (NoSuchElementException e)
                 {
@@ -47,12 +57,12 @@ namespace PageObjects
 
         public void WaitUntilElementisDisplayed(By selector)
         {
-            GetWaitForFiveSeconds().Until(d =>
+            GetWaitForXSeconds().Until(d =>
             {
                 try
                 {
                     var element = GetWebElement(selector);
-                    return Driver.FindElement(selector).Displayed;
+                    return d.FindElement(selector).Displayed;
                 }
                 catch (NoSuchElementException e)
                 {
@@ -70,11 +80,11 @@ namespace PageObjects
         public IWebElement GetWebElement(By selector)
         {
             IWebElement element = null;
-            GetWaitForFiveSeconds().Until(d =>
+            GetWaitForXSeconds().Until(d =>
             {
                 try
                 {
-                    element = Driver.FindElement(selector);
+                    element = d.FindElement(selector);
                     return true;
                 }
                 catch (NoSuchElementException e)
@@ -83,6 +93,11 @@ namespace PageObjects
                     return false;
                 }
                 catch (ElementNotInteractableException e)
+                {
+                    Console.WriteLine($"CATCH ERROR - {e.Message}");
+                    return false;
+                }
+                catch(StaleElementReferenceException e)
                 {
                     Console.WriteLine($"CATCH ERROR - {e.Message}");
                     return false;
@@ -102,7 +117,7 @@ namespace PageObjects
 
         public void EnterText(IWebElement element, string firstname)
         {
-            GetWaitForFiveSeconds().Until(d =>
+            GetWaitForXSeconds().Until(d =>
             {
                 try
                 {
@@ -118,13 +133,18 @@ namespace PageObjects
                 {
                     Console.WriteLine($"CATCH ERROR - {e.Message}");
                     return false;
-                }  
+                }
+                catch (StaleElementReferenceException e)
+                {
+                    Console.WriteLine($"CATCH ERROR - {e.Message}");
+                    return false;
+                }
             });
         }
 
         public void ClickElement(IWebElement element)
         {
-            GetWaitForFiveSeconds().Until(d =>
+            GetWaitForXSeconds().Until(d =>
             {
                 try
                 {
@@ -140,22 +160,27 @@ namespace PageObjects
                 {
                     Console.WriteLine($"CATCH ERROR - {e.Message}");
                     return false;
-                } 
+                }
+                catch (StaleElementReferenceException e)
+                {
+                    Console.WriteLine($"CATCH ERROR - {e.Message}");
+                    return false;
+                }
             });
         }
 
         public void WaitUntilPageHasLoaded()
         {
-            GetWaitForFiveSeconds().Until(d =>
+            GetWaitForXSeconds().Until(d =>
             {
                 try
                 {
-                    var contactUsBtn = GetWebElement(By.Id(SELECTOR_ID_CONTACT_US_BTN));
+                    var ContactUsBtn = GetWebElement(By.Id(SELECTOR_ID_CONTACT_US_BTN));
 
-                    var expectedPageTitle = GetExpectedPageTitle();
-                    var actualPageTitle = GetPageTitle();
+                    var ExpectedPageTitle = GetExpectedPageTitle();
+                    var ActualPageTitle = GetPageTitle();
 
-                    return contactUsBtn.Displayed && expectedPageTitle.Equals(actualPageTitle);
+                    return ContactUsBtn.Displayed && ExpectedPageTitle.Equals(ActualPageTitle);
                 }
                 catch (NoSuchElementException e)
                 {
@@ -167,24 +192,19 @@ namespace PageObjects
                     Console.WriteLine($"CATCH ERROR - {e.Message}");
                     return false;
                 }
+                catch (StaleElementReferenceException e)
+                {
+                    Console.WriteLine($"CATCH ERROR - {e.Message}");
+                    return false;
+                }
             });
         }
 
         protected void ScrollPageToElement(IWebElement element)
         {
-            var actions = new Actions(Driver);
-            actions.MoveToElement(element);
-            actions.Perform();
-        }
-
-        public string GetExpectedPageTitle()
-        {
-            return PAGE_TITLE;
-        }
-
-        public string GetPageTitle()
-        {
-            return Driver.Title;
+            var Actions = new Actions(Driver);
+            Actions.MoveToElement(element);
+            Actions.Perform();
         }
 
         //Decided to go a different route. Will likely need this function at a later point though.
@@ -195,7 +215,7 @@ namespace PageObjects
                 //Decided not to log these exceptions for the moment as they are expected but also since it may do more harm than good 
                 //by causing confusion in the logs. At least it might in the current set up where it is not clear in the logs what element/function the 
                 //exception has been thrown from
-                GetWaitForFiveSeconds().Until(d =>
+                GetWaitForXSeconds().Until(d =>
                 {
                     try
                     {
@@ -218,9 +238,9 @@ namespace PageObjects
             }
         }
 
-        public WebDriverWait GetWaitForFiveSeconds()
+        public WebDriverWait GetWaitForXSeconds(int timeout = 10)
         {
-            Wait = new WebDriverWait(Driver, new TimeSpan(0, 0, 5));
+            Wait = new WebDriverWait(Driver, new TimeSpan(0, 0, timeout));
             return Wait;
         }
     }

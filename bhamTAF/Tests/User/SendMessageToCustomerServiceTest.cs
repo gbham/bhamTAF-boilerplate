@@ -25,10 +25,10 @@ namespace bhamTAF
                          .AttachFile("C:\\test.txt")
                          .Send();            
 
-            var expectedMessage = "Your message has been successfully sent to our team.";
-            var actualMessage = ContactUsPage.GetActualMessage();
+            var ExpectedMessage = "Your message has been successfully sent to our team.";
+            var ActualMessage = ContactUsPage.GetActualMessage();
 
-            Assert.AreEqual(expectedMessage, actualMessage);            
+            Assert.AreEqual(ExpectedMessage, ActualMessage);            
 
         }
     }

@@ -7,7 +7,7 @@ namespace PageObjects
     {
         private const string SELECTOR_CSS_ORDER_HISTORY = "#center_column > div > div:nth-child(1) > ul > li:nth-child(1) > a";
 
-        public override string PAGE_TITLE { get { return "My account - My Store"; } set { } }
+        protected override string PAGE_TITLE { get { return "My account - My Store"; } set { } }
 
         public MyAccountPage(IWebDriver Driver) : base(Driver)
         {            
@@ -18,7 +18,10 @@ namespace PageObjects
             var element = GetWebElement(By.CssSelector(SELECTOR_CSS_ORDER_HISTORY));
             ClickElement(element);
 
-            return new OrderHistoryPage(Driver);
+            var OrderHistoryPage = new OrderHistoryPage(Driver);
+            OrderHistoryPage.WaitUntilPageHasLoaded();
+
+            return OrderHistoryPage;
         }        
     }
 }

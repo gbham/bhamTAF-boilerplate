@@ -26,10 +26,10 @@ namespace bhamTAF
                              .SelectStarRating("1")
                              .ClickSend();                                         
 
-            var expectedMessage = "Your comment has been added and will be available once approved by a moderator";
-            var actualMessage = WriteReviewDialog.GetActualMessage();
+            var ExpectedMessage = "Your comment has been added and will be available once approved by a moderator";
+            var ActualMessage = WriteReviewDialog.GetActualMessage();
 
-            Assert.AreEqual(expectedMessage, actualMessage);
+            Assert.AreEqual(ExpectedMessage, ActualMessage);
 
         }        
     }

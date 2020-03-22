@@ -14,25 +14,25 @@ namespace PageObjects
         private const string SELECTOR_ID_TERMS_OF_SERVICE_CHECKBOX = "cgv";
         private const string SELECTOR_CSS_PAY_BY_BANK_WIRE_BTN = "#HOOK_PAYMENT > div:nth-child(1) > div > p > a";
         private const string SELECTOR_CSS_CONFRIM_ORDER_BTN = "#cart_navigation > button";
-        private const string SELECTOR_CLASS_ORDER_INFO = "box";        
+        private const string SELECTOR_CLASS_ORDER_INFO = "box";
 
-        public override string PAGE_TITLE { get { return "ShoppingCartPage"; } set { } }
+        protected override string PAGE_TITLE { get { return "Order - My Store"; } set { } }
 
         public ShoppingCartPage(IWebDriver Driver) : base(Driver)
         {
         }
 
-        internal ShoppingCartPage ClickProceedToCheckout_SummarySection()
+        public ShoppingCartPage ClickProceedToCheckout_SummarySection()
         {
             var element = GetWebElement(By.CssSelector(SELECTOR_CSS_PROCEED_TO_CHECKOUT_BTN_SUMMARY_SECTION));
             ClickElement(element);
 
             return this;
-        }        
+        }
 
-        //will need a function for "ClickProceedToCheckout_SIGN_IN()" eventually but that stage is skipped in the test since we are signed in already
+        //will need a function for "ClickProceedToCheckout_SIGN_IN()" eventually but that stage is skipped in the current tests since we are signed in already
 
-        internal ShoppingCartPage ClickProceedToCheckout_AddressSection()
+        public ShoppingCartPage ClickProceedToCheckout_AddressSection()
         {
             var element = GetWebElement(By.CssSelector(SELECTOR_CSS_PROCEED_TO_CHECKOUT_BTN_ADDRESS_SECTION));
             ClickElement(element);
@@ -84,10 +84,10 @@ namespace PageObjects
         {
             var InfoBoxText = GetWebElement(By.ClassName(SELECTOR_CLASS_ORDER_INFO)).Text;
 
-            var index = InfoBoxText.IndexOf("reference");            
-            var orderReference = InfoBoxText.Substring(index + 10, 9);
+            var Index = InfoBoxText.IndexOf("reference");            
+            var OrderReference = InfoBoxText.Substring(Index + 10, 9);
 
-            return orderReference;
+            return OrderReference;
         }
     }
 }

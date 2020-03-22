@@ -13,6 +13,7 @@ namespace PageObjects
 
         public WriteReviewDialog(IWebDriver Driver) : base(Driver)
         {
+
         }
 
         public WriteReviewDialog EnterReviewTitle()
@@ -26,9 +27,9 @@ namespace PageObjects
         public WriteReviewDialog SelectStarRating(string rating)
         {
             var element = GetWebElement(By.ClassName(SELECTOR_CLASS_STAR_RATING));
-            var listOfStars = element.FindElements(By.TagName("a"));
+            var ListOfStars = element.FindElements(By.TagName("a"));
 
-            foreach (var star in listOfStars)
+            foreach (var star in ListOfStars)
             {
                 if(star.GetAttribute("title").Equals(rating))
                 {
@@ -56,7 +57,7 @@ namespace PageObjects
             return this;
         }
 
-        internal string GetActualMessage()
+        public string GetActualMessage()
         {
             var elementText = GetWebElement(By.CssSelector(SELECTOR_CSS_CONFIRMATION_MSG)).Text;
 
