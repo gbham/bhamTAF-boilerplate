@@ -1,19 +1,15 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
-using System;
 using System.Linq;
-using System.Threading;
 
 namespace PageObjects
 {
     public class DressesPage : WebPage
     { 
-        //Migrate most of this to a more general view products page class
-        protected const string SELECTOR_CLASS_LOGIN_BTN = "login";
-        protected const string SELECTOR_ID_EMAIL_ADDRESS_FIELD_SIGN_IN = "email";
-        protected const string SELECTOR_CSS_ITEM_GRID = "#center_column > ul";
-        protected const string SELECTOR_CSS_PROCEED_TO_CHECKOUT_BTN = "#layer_cart > div.clearfix > div.layer_cart_cart.col-xs-12.col-md-6 > div.button-container > a";
+        //Migrate most of this to a more general class dedicated to the product page grid view of all the products, not to be mistaken with the general kinda 
+        //template productPage that is for individual products
+        
+        private const string SELECTOR_CSS_ITEM_GRID = "#center_column > ul";
+        private const string SELECTOR_CSS_PROCEED_TO_CHECKOUT_BTN = "#layer_cart > div.clearfix > div.layer_cart_cart.col-xs-12.col-md-6 > div.button-container > a";
 
         public override string PAGE_TITLE { get { return "Dresses - My Store"; } set { }}
         

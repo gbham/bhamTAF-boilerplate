@@ -4,7 +4,7 @@ namespace PageObjects
 {
     public class ProductPage : WebPage
     {
-        const string SELECTOR_CLASS_WRITE_REVIEW = "open-comment-form";
+        private const string SELECTOR_CLASS_WRITE_REVIEW = "open-comment-form";
         
         public ProductPage(IWebDriver Driver) : base(Driver)
         {

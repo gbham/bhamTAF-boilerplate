@@ -1,7 +1,5 @@
 ﻿using NUnit.Framework;
 using PageObjects;
-using System;
-using System.Threading;
 
 namespace bhamTAF
 {
@@ -9,7 +7,7 @@ namespace bhamTAF
     public class ProductReviewTest : IntegrationTest
     {
         [Test]
-        public void LeaveReview()
+        public void ProductReview()
         {
             var Menu = LoadSite();
             var LoginPage = Menu.GoToLoginPage();
@@ -25,11 +23,14 @@ namespace bhamTAF
 
             WriteReviewDialog.EnterReviewTitle()
                              .EnterReviewComment()
-                             .ClickSend()
-                             .AcceptConfirmationDialog();
+                             .SelectStarRating("1")
+                             .ClickSend();                                         
 
-            Thread.Sleep(5000);
+            var expectedMessage = "Your comment has been added and will be available once approved by a moderator";
+            var actualMessage = WriteReviewDialog.GetActualMessage();
 
-        }
+            Assert.AreEqual(expectedMessage, actualMessage);
+
+        }        
     }
 }

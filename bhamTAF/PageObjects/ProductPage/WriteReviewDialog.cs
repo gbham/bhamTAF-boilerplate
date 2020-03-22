@@ -1,13 +1,15 @@
 ﻿using OpenQA.Selenium;
+using System;
 
 namespace PageObjects
 {
     public class WriteReviewDialog : ProductPage
     {        
-        const string SELECTOR_CSS_OK_BTN = "#product > div.fancybox-wrap.fancybox-desktop.fancybox-type-html.fancybox-opened > div > div > div > p.submit > button";
-        const string SELECTOR_ID_COMMENT_BOX = "content";
-        const string SELECTOR_ID_TITLE_BOX = "comment_title";
-        const string SELECTOR_ID_SEND_BT = "submitNewMessage";
+        private const string SELECTOR_ID_COMMENT_BOX = "content";
+        private const string SELECTOR_ID_TITLE_BOX = "comment_title";
+        private const string SELECTOR_ID_SEND_BT = "submitNewMessage";
+        private const string SELECTOR_CLASS_STAR_RATING = "star_content";
+        private const string SELECTOR_CSS_CONFIRMATION_MSG = "#product > div.fancybox-wrap.fancybox-desktop.fancybox-type-html.fancybox-opened > div > div > div > p:nth-child(2)";
 
         public WriteReviewDialog(IWebDriver Driver) : base(Driver)
         {
@@ -21,6 +23,23 @@ namespace PageObjects
             return this;
         }
 
+        public WriteReviewDialog SelectStarRating(string rating)
+        {
+            var element = GetWebElement(By.ClassName(SELECTOR_CLASS_STAR_RATING));
+            var listOfStars = element.FindElements(By.TagName("a"));
+
+            foreach (var star in listOfStars)
+            {
+                if(star.GetAttribute("title").Equals(rating))
+                {
+                    star.Click();
+                    break;
+                }
+            }
+
+            return this;
+        }
+
         public WriteReviewDialog EnterReviewComment()
         {
             var element = GetWebElement(By.Id(SELECTOR_ID_COMMENT_BOX));
@@ -29,22 +48,19 @@ namespace PageObjects
             return this;
         }
 
-        public WriteReviewDialog AcceptConfirmationDialog()
-        {
-            var element = GetWebElement(By.CssSelector(SELECTOR_CSS_OK_BTN));
-            ClickElement(element);
-
-            VerifyElementIsInvisible(element);
-            return this;
-
-        }
-
         public WriteReviewDialog ClickSend()
         {
             var element = GetWebElement(By.Id(SELECTOR_ID_SEND_BT));
             ClickElement(element);
 
             return this;
+        }
+
+        internal string GetActualMessage()
+        {
+            var elementText = GetWebElement(By.CssSelector(SELECTOR_CSS_CONFIRMATION_MSG)).Text;
+
+            return elementText;
         }
     }
 }

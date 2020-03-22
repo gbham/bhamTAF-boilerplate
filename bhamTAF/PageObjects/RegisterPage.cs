@@ -153,10 +153,10 @@ namespace PageObjects
 
         public string GetActualErrors()
         {
-            var element = GetWebElement(By.TagName("ol")).Text.Replace("\r\n", " ").Replace("00000", "");
+            var elementText = GetWebElement(By.TagName("ol")).Text;
+            elementText = elementText.Replace("\r\n", " ").Replace("00000", "");
             
-            return element;
-
+            return elementText;
         }
         
         public MyAccountPage ClickRegister()

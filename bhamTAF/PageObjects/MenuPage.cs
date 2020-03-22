@@ -7,13 +7,11 @@ namespace PageObjects
 {
     public class MenuPage : WebPage
     {
-        protected const string SELECTOR_CLASS_LOGIN_BTN = "login";
-        protected const string SELECTOR_CLASS_MY_ACCOUNT_BTN = "account";        
-        protected const string SELECTOR_ID_EMAIL_ADDRESS_FIELD_SIGN_IN = "email";
-        protected const string SELECTOR_ID_HOMEPAGE_LOGO = "header_logo";
-        protected const string SELECTOR_CLASS_CATEGORY_NAME = "category-name";
-        protected const string SELECTOR_CLASS_PAGE_NAME = "navigation_page";
-        protected const string SELECTOR_ID_PRODUCT_MENU = "block_top_menu";
+        private const string SELECTOR_CLASS_LOGIN_BTN = "login";
+        private const string SELECTOR_CLASS_MY_ACCOUNT_BTN = "account";
+        private const string SELECTOR_ID_CONTACT_US = "contact-link";        
+        private const string SELECTOR_ID_HOMEPAGE_LOGO = "header_logo";        
+        private const string SELECTOR_ID_PRODUCT_MENU = "block_top_menu";
 
         public override string PAGE_TITLE { get { return "Dont want one in this class, assess options"; } set { } }
 
@@ -74,6 +72,19 @@ namespace PageObjects
             MyAccountPage.WaitUntilPageHasLoaded();
 
             return MyAccountPage;
-        }          
+        }
+
+        public ContactUsPage GoToContactUsPage()
+        {
+            var contactUsBtn = GetWebElement(By.Id(SELECTOR_ID_CONTACT_US));
+            ClickElement(contactUsBtn);
+
+            var ContactUsPage = new ContactUsPage(Driver);
+            ContactUsPage.WaitUntilPageHasLoaded();
+
+            return ContactUsPage;
+        }
+
+
     }
 }

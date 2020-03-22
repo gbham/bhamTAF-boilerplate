@@ -82,10 +82,10 @@ namespace PageObjects
 
         public string GetOrderReference()
         {
-            var infoBox = GetWebElement(By.ClassName(SELECTOR_CLASS_ORDER_INFO)).Text;
+            var InfoBoxText = GetWebElement(By.ClassName(SELECTOR_CLASS_ORDER_INFO)).Text;
 
-            var index = infoBox.IndexOf("reference");            
-            var orderReference = infoBox.Substring(index + 10, 9);
+            var index = InfoBoxText.IndexOf("reference");            
+            var orderReference = InfoBoxText.Substring(index + 10, 9);
 
             return orderReference;
         }

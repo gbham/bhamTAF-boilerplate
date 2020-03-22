@@ -37,7 +37,6 @@ namespace bhamTAF
 
             Assert.AreEqual(expectedOrderReference, actualOrderReference);   
 
-            Thread.Sleep(5000);
         }
     }
 }

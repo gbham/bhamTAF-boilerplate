@@ -15,7 +15,8 @@ have class names with spaces in them so cant use them. One <a> tag I just checke
 -Use LINQ where appropriate
 -If I have a GetWebElement() as the first action in a function, then I dont think I need to have a WaitUntilElementDisplayed() at the beginning of the function in question
 -Need a better system of loggin exceptions. It needs to be clear in the logs exactly what element/function the exception was thrown from
-
+-Remove session info from the Console.Writeline() output
+-Add functionality to take a screenshot when a test fails
 
 Other potential scenarios:
 -Add item to cart (select quantity, sixe, color)
@@ -25,9 +26,14 @@ Other potential scenarios:
 -using sorting/filtering functions
 -Search function
 -Shopping cart
--Wishlists (verify item was added to it)
+-Add item to Wishlist (verify item was added to it)
 -Add new address
 -the compare items function
 -Error response when terms of service box not click
 -Verify product counts in shopping cart
 -Download pdf invoice from order history then verify existence in file system
+-Sign up for newsletter
+-Send product to friend via email
+-Contact Us function send message
+-Edit personal information in My Account section
+-Stuff to do with creating, deleteing, updating address in My Account section

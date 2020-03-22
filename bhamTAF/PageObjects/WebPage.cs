@@ -187,6 +187,7 @@ namespace PageObjects
             return Driver.Title;
         }
 
+        //Decided to go a different route. Will likely need this function at a later point though.
         protected void VerifyElementIsInvisible(IWebElement element)
         {
             try
@@ -200,11 +201,11 @@ namespace PageObjects
                     {
                         return !element.Displayed;
                     }                    
-                    catch (NoSuchElementException e)
+                    catch (NoSuchElementException)
                     {
                         return true;
                     }                                       
-                    catch (StaleElementReferenceException e)
+                    catch (StaleElementReferenceException)
                     {
                         return true;
                     }

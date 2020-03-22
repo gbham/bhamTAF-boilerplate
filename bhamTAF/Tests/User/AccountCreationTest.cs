@@ -14,7 +14,7 @@ namespace bhamTAF
             var HomePage = LoadSite();
             var LoginPage = HomePage.GoToLoginPage();
 
-            var RegisterPage = LoginPage.TypeEmailAddress()
+            var RegisterPage = LoginPage.EnterNewEmailAddress()
                                         .ClickCreateAccount();
 
             var AccountPage = RegisterPage.ClickRadioBtnForMr()
@@ -43,7 +43,7 @@ namespace bhamTAF
             var HomePage = LoadSite();
             var LoginPage = HomePage.GoToLoginPage();
 
-            var RegisterPage = LoginPage.TypeEmailAddress()
+            var RegisterPage = LoginPage.EnterNewEmailAddress()
                                         .ClickCreateAccount();
 
             RegisterPage.ClickRadioBtnForMr()
