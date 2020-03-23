@@ -33,6 +33,7 @@ namespace PageObjects
             return PAGE_TITLE;
         }
 
+        //Not needed at the moment since each page uses WaitUntilPageHasLoaded(), and GetWebElement() essentially fills the purpose of this function in many cases.
         public void WaitUntilElementisDisplayedAndEnabled(By selector)
         {
             GetWaitForXSeconds().Until(d =>
@@ -40,7 +41,7 @@ namespace PageObjects
                 try
                 {
                     var element = GetWebElement(selector);
-                    return d.FindElement(selector).Displayed && d.FindElement(selector).Enabled;
+                    return element.Displayed && element.Enabled;
                 }
                 catch (NoSuchElementException e)
                 {
@@ -55,6 +56,7 @@ namespace PageObjects
             });
         }
 
+        //Not needed at the moment since each page uses WaitUntilPageHasLoaded(), and GetWebElement() essentially fills the purpose of this function in many cases.
         public void WaitUntilElementisDisplayed(By selector)
         {
             GetWaitForXSeconds().Until(d =>
@@ -62,7 +64,7 @@ namespace PageObjects
                 try
                 {
                     var element = GetWebElement(selector);
-                    return d.FindElement(selector).Displayed;
+                    return element.Displayed;
                 }
                 catch (NoSuchElementException e)
                 {
@@ -89,17 +91,17 @@ namespace PageObjects
                 }
                 catch (NoSuchElementException e)
                 {
-                    Console.WriteLine($"CATCH ERROR - {e.Message}");
+                    Console.WriteLine($"CATCH ERROR in GetWebElement() - {e.Message}");
                     return false;
                 }
                 catch (ElementNotInteractableException e)
                 {
-                    Console.WriteLine($"CATCH ERROR - {e.Message}");
+                    Console.WriteLine($"CATCH ERROR in GetWebElement() - {e.Message}");
                     return false;
                 }
                 catch(StaleElementReferenceException e)
                 {
-                    Console.WriteLine($"CATCH ERROR - {e.Message}");
+                    Console.WriteLine($"CATCH ERROR in GetWebElement() - {e.Message}");
                     return false;
                 }
             });
@@ -126,17 +128,17 @@ namespace PageObjects
                 }
                 catch (NoSuchElementException e)
                 {
-                    Console.WriteLine($"CATCH ERROR - {e.Message}");
+                    Console.WriteLine($"CATCH ERROR in EnterText() - {e.Message}");
                     return false;
                 }
                 catch (ElementNotInteractableException e)
                 {
-                    Console.WriteLine($"CATCH ERROR - {e.Message}");
+                    Console.WriteLine($"CATCH ERROR in EnterText() - {e.Message}");
                     return false;
                 }
                 catch (StaleElementReferenceException e)
                 {
-                    Console.WriteLine($"CATCH ERROR - {e.Message}");
+                    Console.WriteLine($"CATCH ERROR in EnterText() - {e.Message}");
                     return false;
                 }
             });
@@ -153,17 +155,17 @@ namespace PageObjects
                 }
                 catch (NoSuchElementException e)
                 {
-                    Console.WriteLine($"CATCH ERROR - {e.Message}");
+                    Console.WriteLine($"CATCH ERROR in ClickElement() - {e.Message}");
                     return false;
                 }
                 catch (ElementNotInteractableException e)
                 {
-                    Console.WriteLine($"CATCH ERROR - {e.Message}");
+                    Console.WriteLine($"CATCH ERROR in ClickElement() - {e.Message}");
                     return false;
                 }
                 catch (StaleElementReferenceException e)
                 {
-                    Console.WriteLine($"CATCH ERROR - {e.Message}");
+                    Console.WriteLine($"CATCH ERROR in ClickElement() - {e.Message}");
                     return false;
                 }
             });
@@ -184,17 +186,17 @@ namespace PageObjects
                 }
                 catch (NoSuchElementException e)
                 {
-                    Console.WriteLine($"CATCH ERROR - {e.Message}");
+                    Console.WriteLine($"CATCH ERROR in WaitUntilPageHasLoaded() - {e.Message}");
                     return false;
                 }
                 catch (ElementNotInteractableException e)
                 {
-                    Console.WriteLine($"CATCH ERROR - {e.Message}");
+                    Console.WriteLine($"CATCH ERROR in WaitUntilPageHasLoaded() - {e.Message}");
                     return false;
                 }
                 catch (StaleElementReferenceException e)
                 {
-                    Console.WriteLine($"CATCH ERROR - {e.Message}");
+                    Console.WriteLine($"CATCH ERROR in WaitUntilPageHasLoaded() - {e.Message}");
                     return false;
                 }
             });
@@ -210,6 +212,9 @@ namespace PageObjects
         //Decided to go a different route. Will likely need this function at a later point though.
         protected void VerifyElementIsInvisible(IWebElement element)
         {
+            //This is to ensure any animations are finished
+            Thread.Sleep(1000);
+
             try
             {
                 //Decided not to log these exceptions for the moment as they are expected but also since it may do more harm than good 

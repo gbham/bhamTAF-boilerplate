@@ -1,14 +1,14 @@
 namespace bhamTAF
 {
     abstract public class IntegrationTest : BaseTest
-    {             
-        public const string firstname = "john";
-        public const string surname = "smith";
-        public const string password = "password";
-        public const string address = "123 Test Street";
-        public const string city = "Dundee";
-        public const string state = "New York";
-        public const string postcode = "00000";
-        public const string mobile = "07864536745";        
+    {
+        protected const string firstname = "john";
+        protected const string surname = "smith";
+        protected const string password = "password";
+        protected const string address = "123 Test Street";
+        protected const string city = "Dundee";
+        protected const string state = "New York";
+        protected const string postcode = "00000";
+        protected const string mobile = "07864536745";        
     }
 }

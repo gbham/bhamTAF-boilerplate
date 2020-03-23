@@ -7,7 +7,7 @@ namespace bhamTAF
 {
     public class BaseTest
     {
-        public IWebDriver Driver;
+        private IWebDriver Driver;
 
         protected MenuPage LoadSite()
         {

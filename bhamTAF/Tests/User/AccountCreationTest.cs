@@ -1,7 +1,5 @@
 ﻿using NUnit.Framework;
 using PageObjects;
-using System;
-using System.Threading;
 
 namespace bhamTAF
 {
