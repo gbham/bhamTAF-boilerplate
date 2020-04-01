@@ -11,6 +11,14 @@ jobs:
       - checkout    
       - run: dotnet build
       - run:
+          name: Download Chrome Driver
+          command: |            
+            curl https://chromedriver.storage.googleapis.com/81.0.4044.69/chromedriver_win32.zip
+            Expand-Archive -Force chromedriver_win32.zip 
+            ls
+            dir
+      
+      - run:
           name: Tester testy run
           command: |
             cd C:/Users/circleci/project/bhamTAF
