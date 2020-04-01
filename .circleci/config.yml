@@ -13,7 +13,7 @@ jobs:
       - run:
           name: Download Chrome Driver
           command: |     
-            $Path = $env:TEMP; Invoke-WebRequest "https://chromedriver.storage.googleapis.com/81.0.4044.69/chromedriver_win32.zip" -OutFile $Path\chromedriver; Start-Process
+            $Path = $env:TEMP; Invoke-WebRequest "http://chromedriver.storage.googleapis.com/81.0.4044.69/chromedriver_win32.zip" -OutFile $Path\chromedriver; Start-Process
           
           
             #curl https://chromedriver.storage.googleapis.com/81.0.4044.69/chromedriver_win32.zip
