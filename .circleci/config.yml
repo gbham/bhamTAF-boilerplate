@@ -13,8 +13,8 @@ jobs:
       - run:
           name: Tester testy run
           command: |
-            cd C:/Users/circleci/project/bhamTAF/bin/Debug/netcoreapp3.1 
-            nunit-console bhamTAF.dll
+            cd C:/Users/circleci/project/bhamTAF
+            dotnet test
       
       
     
