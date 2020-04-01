@@ -10,14 +10,25 @@ jobs:
     steps: 
       - checkout    
       - run: dotnet build
-      
       - run:
-          name: Open Visual Studio Dev Cmd
+          name: Tester testy run
           command: |
-            C:/"Program Files (x86)"/"Microsoft Visual Studio"/2019/Community/Common7/Tools/VsDevCmd.bat
-            ping 127.0.0.1 -n 15
-            ls
-            VSTest.Console/?
+            cd C:/Users/circleci/project/bhamTAF/bin/Debug/netcoreapp3.1 
+            nunit-console bhamTAF.dll
+      
+      
+    
+      
+      
+      
+      
+#       - run:
+#           name: Open Visual Studio Dev Cmd
+#           command: |
+#             C:/"Program Files (x86)"/"Microsoft Visual Studio"/2019/Community/Common7/Tools/VsDevCmd.bat
+#             ping 127.0.0.1 -n 15
+#             ls
+#             VSTest.Console/?
       
       
       
