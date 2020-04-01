@@ -15,7 +15,7 @@ jobs:
           command: |   
             $Path = $env:TEMP; $Installer = "chromedriver.exe"; $ProgressPreference = "SilentlyContinue"; Invoke-WebRequest "https://chromedriver.storage.googleapis.com/81.0.4044.69/chromedriver_win32.zip" -OutFile 'C:\Users\chromedriver.exe';
             ls
-            
+#ONCE THE PLAN HAS CREDITS AGAIN THEN TRY THIS "PROGRESSPREFERENCE" AND TRY CHANGING THE OUTPUT TO BE ZIP INSTEAD OF EXE. I dont think this should matter as .EXE works when the command is ran locally.            
       
       - run:
           name: Tester testy run
